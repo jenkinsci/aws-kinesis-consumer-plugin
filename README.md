@@ -1,0 +1,1 @@
+# aws-kinesis-consumer-plugin
