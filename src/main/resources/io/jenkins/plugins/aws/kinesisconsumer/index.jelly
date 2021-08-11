@@ -1,0 +1,8 @@
+<?jelly escape-by-default='true'?>
+<!--
+  This view is used to render the installed plugins page.
+-->
+<div>
+  This plugin connects to Kinesis streams, receive records in queue,
+  then deliver to listeners.
+</div>
