@@ -1,0 +1,2 @@
+_extends: .github
+tag-template: io.jenkins.plugins-$NEXT_MINOR_VERSION

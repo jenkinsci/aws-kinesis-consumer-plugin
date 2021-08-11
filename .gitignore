@@ -1,0 +1,9 @@
+target/
+work/
+.checkstyle
+.classpath
+.project
+.settings/
+.idea/
+.DS_Store
+
