@@ -7,6 +7,19 @@
         <version>4.16</version>
         <relativePath />
     </parent>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jenkins-ci.tools</groupId>
+                <artifactId>maven-hpi-plugin</artifactId>
+                <configuration>
+                    <minimumJavaVersion/>
+                    <!-- JENKINS-50520: since we need a custom version of Guava -->
+                    <maskClasses>com.google.common.</maskClasses>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <groupId>io.jenkins.plugins</groupId>
     <artifactId>aws-kinesis-consumer</artifactId>
     <version>${revision}${changelist}</version>
@@ -21,14 +34,20 @@
 
         <jmockit.version>1.38</jmockit.version>
         <kinesis.client.version>2.3.4</kinesis.client.version>
-        <kinesis.version>2.16.19</kinesis.version>
-        <sdk.core.version>2.16.19</sdk.core.version>
-        <netty.nio.client.version>2.16.19</netty.nio.client.version>
+        <kinesis.version>2.15.32</kinesis.version>
+        <sdk.core.version>2.15.32</sdk.core.version>
+        <amazon.glue.version>1.0.0</amazon.glue.version>
+        <netty.nio.client.version>2.15.32</netty.nio.client.version>
+        <netty.all.version>4.1.51.Final</netty.all.version>
         <reactive.stream.version>1.0.3</reactive.stream.version>
         <httpcore.version>4.4.13</httpcore.version>
         <commons.validator.version>1.6</commons.validator.version>
         <commons.digester.version>2.1</commons.digester.version>
-        <slf4jVersion>1.7.28</slf4jVersion>
+        <com.google.flogger.version>0.6</com.google.flogger.version>
+        <google.guava.version>18.0</google.guava.version>
+        <com.fasterxml.jackson.version>2.10.4</com.fasterxml.jackson.version>
+        <apache.common.version>3.12.0</apache.common.version>
+        <google.inject.extensions.version>4.0</google.inject.extensions.version>
 
     </properties>
     <name>AWS Kinesis Consumer Plugin</name>
@@ -61,8 +80,53 @@
         </dependency>
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
+            <artifactId>protocol-core</artifactId>
+            <version>${kinesis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>aws-json-protocol</artifactId>
+            <version>${kinesis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>aws-query-protocol</artifactId>
+            <version>${kinesis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>aws-cbor-protocol</artifactId>
+            <version>${kinesis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
             <artifactId>kinesis</artifactId>
             <version>${kinesis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>metrics-spi</artifactId>
+            <version>${kinesis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>sdk-core</artifactId>
+            <version>${sdk.core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>aws-json-protocol</artifactId>
+            <version>${kinesis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>http-client-spi</artifactId>
+            <version>${sdk.core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.glue</groupId>
+            <artifactId>schema-registry-serde</artifactId>
+            <version>${amazon.glue.version}</version>
         </dependency>
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
@@ -70,10 +134,11 @@
             <version>${netty.nio.client.version}</version>
         </dependency>
         <dependency>
-            <groupId>software.amazon.awssdk</groupId>
-            <artifactId>sdk-core</artifactId>
-            <version>${sdk.core.version}</version>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>${netty.all.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.reactivestreams</groupId>
             <artifactId>reactive-streams</artifactId>
@@ -95,10 +160,41 @@
             <version>${commons.digester.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4jVersion}</version>
+            <groupId>com.google.flogger</groupId>
+            <artifactId>flogger</artifactId>
+            <version>${com.google.flogger.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.flogger</groupId>
+            <artifactId>flogger-system-backend</artifactId>
+            <version>${com.google.flogger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-assistedinject</artifactId>
+            <version>${google.inject.extensions.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${google.guava.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${apache.common.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${com.fasterxml.jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-cbor</artifactId>
+            <version>${com.fasterxml.jackson.version}</version>
+        </dependency>
+
     </dependencies>
 
     <licenses>
