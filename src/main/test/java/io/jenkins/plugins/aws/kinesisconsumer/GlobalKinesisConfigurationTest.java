@@ -1,6 +1,7 @@
 package io.jenkins.plugins.aws.kinesisconsumer;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import com.google.common.collect.ImmutableList;
 import hudson.util.FormValidation;
@@ -41,5 +42,24 @@ public class GlobalKinesisConfigurationTest {
     GlobalKinesisConfiguration c = GlobalKinesisConfiguration.get();
 
     assertEquals(c.doCheckLocalEndpoint("http://localhost:4566").kind, FormValidation.Kind.OK);
+  }
+
+  @Test
+  public void shouldCheckInvalidRegion() {
+    GlobalKinesisConfiguration c = GlobalKinesisConfiguration.get();
+
+    FormValidation result = c.doCheckRegion("foo-bar");
+
+    assertEquals(result.kind, FormValidation.Kind.ERROR);
+    assertTrue(result.getMessage().contains("not a valid AWS region"));
+  }
+
+  @Test
+  public void shouldCheckValidRegion() {
+    GlobalKinesisConfiguration c = GlobalKinesisConfiguration.get();
+
+    FormValidation result = c.doCheckRegion("us-east-1");
+
+    assertEquals(result.kind, FormValidation.Kind.OK);
   }
 }

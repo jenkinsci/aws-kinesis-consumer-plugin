@@ -4,6 +4,7 @@ import hudson.Extension;
 import hudson.ExtensionList;
 import hudson.util.FormValidation;
 import java.util.List;
+import java.util.stream.Collectors;
 import jenkins.model.GlobalConfiguration;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang3.StringUtils;
@@ -14,6 +15,7 @@ import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import software.amazon.awssdk.regions.Region;
 
 /**
  * Class representing the Global Kinesis configuration
@@ -135,6 +137,31 @@ public class GlobalKinesisConfiguration extends GlobalConfiguration {
       return FormValidation.ok();
     } else {
       String errorMessage = String.format("'%s' is not a valid URL", value);
+      LOGGER.error(errorMessage);
+      return FormValidation.error(errorMessage);
+    }
+  }
+
+  /**
+   * Checks AWS region is valid.
+   *
+   * @param value the region.
+   * @return FormValidation object that indicates ok or error.
+   */
+  public FormValidation doCheckRegion(@QueryParameter String value) {
+    String val = StringUtils.stripToNull(value);
+    if (val == null) {
+      return FormValidation.ok();
+    }
+
+    if (Region.regions().contains(Region.of(value))) {
+      return FormValidation.ok();
+    } else {
+      String errorMessage =
+          String.format(
+              "'%s' is not a valid AWS region. Valid regions are: %s",
+              region,
+              Region.regions().stream().map(Region::toString).collect(Collectors.joining(",")));
       LOGGER.error(errorMessage);
       return FormValidation.error(errorMessage);
     }
