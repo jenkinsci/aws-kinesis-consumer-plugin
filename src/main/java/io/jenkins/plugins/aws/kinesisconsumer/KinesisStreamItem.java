@@ -14,55 +14,52 @@ import org.kohsuke.stapler.DataBoundConstructor;
  * @author Fabio Ponciroli
  */
 public class KinesisStreamItem implements Describable<KinesisStreamItem> {
-    private String streamName = null;
+  private String streamName = null;
 
-    /**
-     * Creates KinesisStreamItem instance.
-     *
-     * @param streamName
-     *            the queue name.
-     */
-    @DataBoundConstructor
-    public KinesisStreamItem(String streamName) {
-        this.streamName = StringUtils.stripToNull(streamName);
-    }
+  /**
+   * Creates KinesisStreamItem instance.
+   *
+   * @param streamName the queue name.
+   */
+  @DataBoundConstructor
+  public KinesisStreamItem(String streamName) {
+    this.streamName = StringUtils.stripToNull(streamName);
+  }
 
-    /**
-     * Get the stream name
-     *
-     * @return the stream name
-     */
-    public String getStreamName() {
-        return streamName;
-    }
+  /**
+   * Get the stream name
+   *
+   * @return the stream name
+   */
+  public String getStreamName() {
+    return streamName;
+  }
 
-    /**
-     *  Set the stram name
-     *
-     * @param streamName
-     *          stream name
-     */
-    public void setStreamName(String streamName) {
-        this.streamName = streamName;
-    }
+  /**
+   * Set the stram name
+   *
+   * @param streamName stream name
+   */
+  public void setStreamName(String streamName) {
+    this.streamName = streamName;
+  }
 
-    @Extension
-    public static class DescriptorImpl extends Descriptor<KinesisStreamItem> {
-        @Override
-        public String getDisplayName() {
-            return "";
-        }
-
-    }
-
-    /**
-     * Get a Descriptor<KinesisStreamItem> instance
-     *
-     * @return a Descriptor<KinesisStreamItem> instance
-     */
+  @Extension
+  public static class DescriptorImpl extends Descriptor<KinesisStreamItem> {
     @Override
-    @NonNull
-    public Descriptor <KinesisStreamItem> getDescriptor() {
-        return (Descriptor<KinesisStreamItem>) Jenkins.get().getDescriptorOrDie(getClass());
+    public String getDisplayName() {
+      return "";
     }
+  }
+
+  /**
+   * Get a Descriptor<KinesisStreamItem> instance
+   *
+   * @return a Descriptor<KinesisStreamItem> instance
+   */
+  @Override
+  @NonNull
+  public Descriptor<KinesisStreamItem> getDescriptor() {
+    return (Descriptor<KinesisStreamItem>) Jenkins.get().getDescriptorOrDie(getClass());
+  }
 }
