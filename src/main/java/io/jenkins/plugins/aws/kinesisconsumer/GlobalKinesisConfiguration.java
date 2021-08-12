@@ -26,6 +26,7 @@ public class GlobalKinesisConfiguration extends GlobalConfiguration {
     private boolean kinesisConsumerEnabled;
     private String region;
     private List <KinesisStreamItem> kinesisStreamItems;
+    private String localEndpoint;
 
     /**
      * Set AWS Region when loading the global configuration page
@@ -56,6 +57,16 @@ public class GlobalKinesisConfiguration extends GlobalConfiguration {
     @DataBoundSetter
     public void setKinesisStreamItems(List <KinesisStreamItem> kinesisStreamItems) {
         this.kinesisStreamItems = kinesisStreamItems;
+    }
+
+    /**
+     * Set an optional endpoint to point to a local kinesis stack rather than
+     * the AWS service. Useful for development.
+     * @param localEndpoint the local endpoint URL, i.e. http://localhost:4566
+     */
+    @DataBoundSetter
+    public void setLocalEndpoint(String localEndpoint) {
+        this.localEndpoint = localEndpoint;
     }
 
     public GlobalKinesisConfiguration() { load(); }
@@ -89,6 +100,15 @@ public class GlobalKinesisConfiguration extends GlobalConfiguration {
 
     public List <KinesisStreamItem> getKinesisStreamItems() {
         return kinesisStreamItems;
+    }
+
+    /**
+     * Get the local endpoint to consume from rather than the AWS service
+     *
+     * @return The local endpoint, or null, when not defined.
+     */
+    public String getLocalEndpoint() {
+        return localEndpoint;
     }
 
     /**

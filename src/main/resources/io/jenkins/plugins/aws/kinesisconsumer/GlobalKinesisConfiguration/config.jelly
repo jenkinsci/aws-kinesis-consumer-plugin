@@ -31,5 +31,10 @@
           </f:repeatable>
         </table>
     </f:entry>
+    <f:advanced>
+      <f:entry title="${%Local Endpoint}" field="localEndpoint">
+         <f:textbox />
+      </f:entry>
+    </f:advanced>
   </f:section>
 </j:jelly>
