@@ -2,11 +2,15 @@ package io.jenkins.plugins.aws.kinesisconsumer;
 
 import hudson.Extension;
 import hudson.ExtensionList;
+import hudson.util.FormValidation;
 import java.util.List;
 import jenkins.model.GlobalConfiguration;
 import net.sf.json.JSONObject;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.validator.routines.UrlValidator;
 import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundSetter;
+import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +25,9 @@ import org.slf4j.LoggerFactory;
 public class GlobalKinesisConfiguration extends GlobalConfiguration {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(GlobalKinesisConfiguration.class);
+
+  private static final UrlValidator URL_VALIDATOR = new UrlValidator(UrlValidator.ALLOW_LOCAL_URLS);
+
   private boolean kinesisConsumerEnabled;
   private String region;
   private List<KinesisStreamItem> kinesisStreamItems;
@@ -110,6 +117,27 @@ public class GlobalKinesisConfiguration extends GlobalConfiguration {
    */
   public String getLocalEndpoint() {
     return localEndpoint;
+  }
+
+  /**
+   * Checks local endpoint URL is valid.
+   *
+   * @param value the URL.
+   * @return FormValidation object that indicates ok or error.
+   */
+  public FormValidation doCheckLocalEndpoint(@QueryParameter String value) {
+    String val = StringUtils.stripToNull(value);
+    if (val == null) {
+      return FormValidation.ok();
+    }
+
+    if (URL_VALIDATOR.isValid(val)) {
+      return FormValidation.ok();
+    } else {
+      String errorMessage = String.format("'%s' is not a valid URL", value);
+      LOGGER.error(errorMessage);
+      return FormValidation.error(errorMessage);
+    }
   }
 
   /**
