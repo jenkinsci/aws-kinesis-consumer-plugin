@@ -223,4 +223,21 @@
             <url>https://repo.jenkins-ci.org/public/</url>
         </pluginRepository>
     </pluginRepositories>
+    <developers>
+        <developer>
+            <id>syntonyze</id>
+            <name>Antonio Barone</name>
+            <email>syntonyze@gmail.com</email>
+        </developer>
+        <developer>
+            <id>ponch</id>
+            <name>Fabio Ponciroli</name>
+            <email>ponch78@gmail.com</email>
+        </developer>
+        <developer>
+            <id>lucamilanesio</id>
+            <name>Luca Milanesio</name>
+            <email>luca.milanesio@gmail.com</email>
+        </developer>
+    </developers>
 </project>
