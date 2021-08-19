@@ -7,6 +7,12 @@ import hudson.XmlFile;
 import hudson.model.Saveable;
 import hudson.model.listeners.SaveableListener;
 
+/**
+ * Extends <code>SaveableListener</code> to listen to
+ * <code>GlobalKinesisConfiguration</code> changes.
+ *
+ * @author Fabio Ponciroli
+ */
 @Extension
 public class SaveableListenerImpl extends SaveableListener {
 
@@ -21,6 +27,13 @@ public class SaveableListenerImpl extends SaveableListener {
 
   private static final FluentLogger logger = FluentLogger.forEnclosingClass();
 
+  /**
+   * On change restart the AWS Kinesis consumer. This is useful, for example,
+   * when adding a new stream to listen from
+   *
+   * @param o saved object
+   * @param file XML file containing the new configuration
+   */
   @Override
   public final void onChange(Saveable o, XmlFile file) {
     if (o instanceof GlobalKinesisConfiguration) {
@@ -33,9 +46,9 @@ public class SaveableListenerImpl extends SaveableListener {
   }
 
   /**
-   * Gets instance of this extension.
+   * Gets an instance of this extension
    *
-   * @return the instance of this extension.
+   * @return an instance of this extension
    */
   public static SaveableListenerImpl get() {
     return SaveableListener.all().get(SaveableListenerImpl.class);

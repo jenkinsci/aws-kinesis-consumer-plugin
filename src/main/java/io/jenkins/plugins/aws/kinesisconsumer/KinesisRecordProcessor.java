@@ -12,6 +12,12 @@ import software.amazon.kinesis.lifecycle.events.ShardEndedInput;
 import software.amazon.kinesis.lifecycle.events.ShutdownRequestedInput;
 import software.amazon.kinesis.processor.ShardRecordProcessor;
 
+/**
+ * Implements the <code>ShardRecordProcessor</code> interface to process data
+ * records fetched from Amazon Kinesis
+ *
+ * @author Fabio Ponciroli
+ */
 public class KinesisRecordProcessor implements ShardRecordProcessor {
   interface Factory {
     KinesisRecordProcessor create(String streamName);
@@ -29,6 +35,12 @@ public class KinesisRecordProcessor implements ShardRecordProcessor {
     // TODO handle exception
   }
 
+  /**
+   * Forward each byte record of <code>ProcessRecordsInput</code> to the
+   * <code>AWSKinesisStreamListener</code> interface
+   *
+   * @param processRecordsInput <code>ProcessRecordsInput</code> to process
+   */
   @Override
   public void processRecords(ProcessRecordsInput processRecordsInput) {
     try {

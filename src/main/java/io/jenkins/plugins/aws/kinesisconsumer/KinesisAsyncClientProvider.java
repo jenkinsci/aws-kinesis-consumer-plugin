@@ -9,6 +9,11 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.kinesis.KinesisAsyncClient;
 import software.amazon.awssdk.services.kinesis.KinesisAsyncClientBuilder;
 
+/**
+ * Provider of <class>KinesisAsyncClient</class>
+ *
+ * @author Fabio Ponciroli
+ */
 @Singleton
 public class KinesisAsyncClientProvider implements Provider<KinesisAsyncClient> {
   private final GlobalKinesisConfiguration globalKinesisConfiguration;

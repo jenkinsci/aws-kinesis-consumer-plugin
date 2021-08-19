@@ -9,6 +9,11 @@ import software.amazon.kinesis.common.ConfigsBuilder;
 import software.amazon.kinesis.coordinator.Scheduler;
 import software.amazon.kinesis.retrieval.RetrievalConfig;
 
+/**
+*  Provider of Kinesis Scheduler
+*
+*  @author Fabio Ponciroli
+**/
 public class SchedulerProvider implements Provider<Scheduler> {
 
   private final GlobalKinesisConfiguration configuration;
@@ -36,6 +41,12 @@ public class SchedulerProvider implements Provider<Scheduler> {
     this.kinesisRecordProcessorFactory = kinesisRecordProcessorFactory;
   }
 
+  /**
+   * Enrich the SchedulerProvider with stream information
+   *
+   * @param streamName stream to create the provider for
+   * @return a SchedulerProvider for a given stream
+   */
   public SchedulerProvider forStream(String streamName) {
     this.streamName = streamName;
 
@@ -53,6 +64,11 @@ public class SchedulerProvider implements Provider<Scheduler> {
     return this;
   }
 
+  /**
+   * Get an instance of Kinesis Sheduler from the provider
+   *
+   * @return a Kinesis Scheduler
+   */
   @Override
   public Scheduler get() {
     return new Scheduler(
@@ -65,11 +81,11 @@ public class SchedulerProvider implements Provider<Scheduler> {
         retrievalConfig);
   }
 
-  public static String getWorkerIdentifier(String streamName) {
+  private static String getWorkerIdentifier(String streamName) {
     return String.format("klc-worker-%s-%s", APPLICATION_NAME, streamName);
   }
 
-  public static String cosumerLeaseName(String applicationName, String streamName) {
+  private static String cosumerLeaseName(String applicationName, String streamName) {
     return String.format("%s-%s", applicationName, streamName);
   }
 }

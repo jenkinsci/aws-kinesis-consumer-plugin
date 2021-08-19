@@ -5,6 +5,13 @@ import software.amazon.kinesis.common.StreamIdentifier;
 import software.amazon.kinesis.processor.ShardRecordProcessor;
 import software.amazon.kinesis.processor.ShardRecordProcessorFactory;
 
+/**
+ * Factory to create <code>KinesisRecordProcessor</code> instances.
+ * The Kinesis Client Library will instantiate <code>KinesisRecordProcessor</code>
+ * to process data records fetched from Kinesis.
+ *
+ * @author Fabio Ponciroli
+ */
 public class KinesisRecordProcessorFactory implements ShardRecordProcessorFactory {
   interface Factory {
     KinesisRecordProcessorFactory create();
@@ -23,6 +30,13 @@ public class KinesisRecordProcessorFactory implements ShardRecordProcessorFactor
     return null;
   }
 
+  /**
+   * Returns a new instance of the <code>hardRecordProcessor</code>, given a
+   * <code>StreamIdentifier</code>
+   *
+   * @param streamIdentifier a <code>StreamIdentifier</code>
+   * @return <code>ShardRecordProcessor</code>
+   */
   @Override
   public ShardRecordProcessor shardRecordProcessor(StreamIdentifier streamIdentifier) {
     return new KinesisRecordProcessor(streamIdentifier.streamName());

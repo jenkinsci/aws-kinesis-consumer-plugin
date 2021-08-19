@@ -9,6 +9,11 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.cloudwatch.CloudWatchAsyncClient;
 import software.amazon.awssdk.services.cloudwatch.CloudWatchAsyncClientBuilder;
 
+/**
+ * Provider of <class>CloudWatchAsyncClient</class>
+ *
+ * @author Fabio Ponciroli
+ */
 @Singleton
 class CloudWatchAsyncClientProvider implements Provider<CloudWatchAsyncClient> {
   private final GlobalKinesisConfiguration globalKinesisConfiguration;

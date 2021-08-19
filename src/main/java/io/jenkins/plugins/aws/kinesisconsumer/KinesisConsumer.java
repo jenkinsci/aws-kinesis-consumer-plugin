@@ -7,6 +7,12 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import software.amazon.kinesis.coordinator.Scheduler;
 
+/**
+ * Responsible to connect to the configured Kinesis streams and start the
+ * scheduler threads to begin polling records
+ *
+ * @author Fabio Ponciroli
+ */
 public class KinesisConsumer {
   interface Factory {
     KinesisConsumer create(GlobalKinesisConfiguration configuration);
@@ -26,6 +32,10 @@ public class KinesisConsumer {
     this.configuration = configuration;
   }
 
+  /**
+   * Starts the scheduler threads to begin polling records from the Kinesis
+   * streams configured
+   */
   public void start() {
     // TODO Should loop on all the Streams and it should check if at last a
     // stream is available
@@ -33,7 +43,7 @@ public class KinesisConsumer {
     subscribe(kinesisStreamItem.getStreamName());
   }
 
-  public void subscribe(String streamName) {
+  private void subscribe(String streamName) {
     this.streamName = streamName;
     this.kinesisScheduler = schedulerProvider.forStream(streamName).get();
     Thread schedulerThread = new Thread(kinesisScheduler);
@@ -41,6 +51,10 @@ public class KinesisConsumer {
     schedulerThread.start();
   }
 
+  /**
+   * Stop the scheduler threads to end consuming records from the Kinesis
+   * streams
+   */
   public void shutdown() {
     // TODO this is currently not plugged in
     Future<Boolean> gracefulShutdownFuture = kinesisScheduler.startGracefulShutdown();

@@ -9,6 +9,11 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbAsyncClient;
 import software.amazon.awssdk.services.dynamodb.DynamoDbAsyncClientBuilder;
 
+/**
+ * Provider of <class>DynamoDbAsyncClient</class>
+ *
+ * @author Fabio Ponciroli
+ */
 @Singleton
 class DynamoDbAsyncClientProvider implements Provider<DynamoDbAsyncClient> {
   private final GlobalKinesisConfiguration globalKinesisConfiguration;
