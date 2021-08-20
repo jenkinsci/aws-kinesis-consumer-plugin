@@ -14,7 +14,7 @@ import software.amazon.kinesis.coordinator.Scheduler;
  * @author Fabio Ponciroli
  */
 public class KinesisConsumer {
-  interface Factory {
+  public interface Factory {
     KinesisConsumer create(GlobalKinesisConfiguration configuration);
   }
 
@@ -22,13 +22,14 @@ public class KinesisConsumer {
 
   private String streamName;
   private Scheduler kinesisScheduler;
-  private final SchedulerProvider schedulerProvider;
+  private final SchedulerProvider.Factory schedulerProviderFactory;
   private GlobalKinesisConfiguration configuration;
 
   @AssistedInject
   KinesisConsumer(
-      SchedulerProvider schedulerProvider, @Assisted GlobalKinesisConfiguration configuration) {
-    this.schedulerProvider = schedulerProvider;
+      SchedulerProvider.Factory schedulerProviderFactory,
+      @Assisted GlobalKinesisConfiguration configuration) {
+    this.schedulerProviderFactory = schedulerProviderFactory;
     this.configuration = configuration;
   }
 
@@ -45,7 +46,7 @@ public class KinesisConsumer {
 
   private void subscribe(String streamName) {
     this.streamName = streamName;
-    this.kinesisScheduler = schedulerProvider.forStream(streamName).get();
+    this.kinesisScheduler = schedulerProviderFactory.create(streamName).get();
     Thread schedulerThread = new Thread(kinesisScheduler);
     schedulerThread.setDaemon(true);
     schedulerThread.start();

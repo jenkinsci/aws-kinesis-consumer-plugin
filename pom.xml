@@ -47,7 +47,9 @@
         <google.guava.version>26.0-jre</google.guava.version>
         <com.fasterxml.jackson.version>2.10.4</com.fasterxml.jackson.version>
         <apache.common.version>3.12.0</apache.common.version>
+        <apache.commons.compress.version>1.20</apache.commons.compress.version>
         <google.inject.extensions.version>4.0</google.inject.extensions.version>
+        <testcontainer.localstack.version>1.16.0</testcontainer.localstack.version>
 
     </properties>
     <name>AWS Kinesis Consumer Plugin</name>
@@ -185,6 +187,11 @@
             <version>${apache.common.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>${apache.commons.compress.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${com.fasterxml.jackson.version}</version>
@@ -193,6 +200,20 @@
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-cbor</artifactId>
             <version>${com.fasterxml.jackson.version}</version>
+        </dependency>
+
+        <!-- Test dependencies -->
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>localstack</artifactId>
+            <version>${testcontainer.localstack.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-commons</artifactId>
+            <version>1.4.0</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>

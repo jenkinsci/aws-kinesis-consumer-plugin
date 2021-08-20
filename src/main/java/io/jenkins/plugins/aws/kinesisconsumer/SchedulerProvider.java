@@ -1,7 +1,8 @@
 package io.jenkins.plugins.aws.kinesisconsumer;
 
-import com.google.inject.Inject;
 import com.google.inject.Provider;
+import com.google.inject.assistedinject.Assisted;
+import com.google.inject.assistedinject.AssistedInject;
 import software.amazon.awssdk.services.cloudwatch.CloudWatchAsyncClient;
 import software.amazon.awssdk.services.dynamodb.DynamoDbAsyncClient;
 import software.amazon.awssdk.services.kinesis.KinesisAsyncClient;
@@ -16,41 +17,31 @@ import software.amazon.kinesis.retrieval.RetrievalConfig;
  *
  * @author Fabio Ponciroli
  */
-public class SchedulerProvider implements Provider<Scheduler> {
-
+class SchedulerProvider implements Provider<Scheduler> {
   private final GlobalKinesisConfiguration configuration;
   private final KinesisAsyncClient kinesisAsyncClient;
-  private final DynamoDbAsyncClient dynamoDbAsyncClient;
-  private final CloudWatchAsyncClient cloudWatchAsyncClient;
-  private final KinesisRecordProcessorFactory kinesisRecordProcessorFactory;
+
+  interface Factory {
+    SchedulerProvider create(String streamName);
+  }
+
   private ConfigsBuilder configsBuilder;
-  private RetrievalConfig retrievalConfig;
+
   private String streamName;
   // TODO this should be configurable
   public static final String APPLICATION_NAME = "jenkins-kinesis-consumer";
 
-  @Inject
-  public SchedulerProvider(
+  @AssistedInject
+  SchedulerProvider(
       GlobalKinesisConfiguration configuration,
       KinesisAsyncClient kinesisAsyncClient,
       DynamoDbAsyncClient dynamoDbAsyncClient,
       CloudWatchAsyncClient cloudWatchAsyncClient,
-      KinesisRecordProcessorFactory kinesisRecordProcessorFactory) {
+      KinesisRecordProcessorFactory.Factory kinesisRecordProcessorFactoryFactory,
+      @Assisted String streamName) {
     this.configuration = configuration;
-    this.kinesisAsyncClient = kinesisAsyncClient;
-    this.dynamoDbAsyncClient = dynamoDbAsyncClient;
-    this.cloudWatchAsyncClient = cloudWatchAsyncClient;
-    this.kinesisRecordProcessorFactory = kinesisRecordProcessorFactory;
-  }
-
-  /**
-   * Enrich the SchedulerProvider with stream information
-   *
-   * @param streamName stream to create the provider for
-   * @return a SchedulerProvider for a given stream
-   */
-  public SchedulerProvider forStream(String streamName) {
     this.streamName = streamName;
+    this.kinesisAsyncClient = kinesisAsyncClient;
 
     this.configsBuilder =
         new ConfigsBuilder(
@@ -60,10 +51,7 @@ public class SchedulerProvider implements Provider<Scheduler> {
             dynamoDbAsyncClient,
             cloudWatchAsyncClient,
             getWorkerIdentifier(streamName),
-            kinesisRecordProcessorFactory);
-    // TODO This should read from configuration
-    this.retrievalConfig = configsBuilder.retrievalConfig();
-    return this;
+            kinesisRecordProcessorFactoryFactory.create(streamName));
   }
 
   /**
