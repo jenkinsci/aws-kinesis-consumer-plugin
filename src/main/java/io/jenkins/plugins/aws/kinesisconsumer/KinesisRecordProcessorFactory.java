@@ -1,7 +1,7 @@
 package io.jenkins.plugins.aws.kinesisconsumer;
 
 import com.google.inject.Inject;
-import software.amazon.kinesis.common.StreamIdentifier;
+import com.google.inject.assistedinject.Assisted;
 import software.amazon.kinesis.processor.ShardRecordProcessor;
 import software.amazon.kinesis.processor.ShardRecordProcessorFactory;
 
@@ -14,31 +14,21 @@ import software.amazon.kinesis.processor.ShardRecordProcessorFactory;
  */
 public class KinesisRecordProcessorFactory implements ShardRecordProcessorFactory {
   interface Factory {
-    KinesisRecordProcessorFactory create();
+    KinesisRecordProcessorFactory create(String streamName);
   }
 
-  private final KinesisRecordProcessor.Factory processorFactory;
+  private final String streamName;
+  private final KinesisRecordProcessor.Factory kinesisRecordProcessorFactory;
 
   @Inject
-  KinesisRecordProcessorFactory(KinesisRecordProcessor.Factory processorFactory) {
-    this.processorFactory = processorFactory;
+  KinesisRecordProcessorFactory(
+      @Assisted String streamName, KinesisRecordProcessor.Factory kinesisRecordProcessorFactory) {
+    this.streamName = streamName;
+    this.kinesisRecordProcessorFactory = kinesisRecordProcessorFactory;
   }
 
   @Override
   public ShardRecordProcessor shardRecordProcessor() {
-    // TODO this constructor shouldn't be allowed. Need to handle it
-    return null;
-  }
-
-  /**
-   * Returns a new instance of the <code>hardRecordProcessor</code>, given a
-   * <code>StreamIdentifier</code>
-   *
-   * @param streamIdentifier a <code>StreamIdentifier</code>
-   * @return <code>ShardRecordProcessor</code>
-   */
-  @Override
-  public ShardRecordProcessor shardRecordProcessor(StreamIdentifier streamIdentifier) {
-    return new KinesisRecordProcessor(streamIdentifier.streamName());
+    return kinesisRecordProcessorFactory.create(streamName);
   }
 }

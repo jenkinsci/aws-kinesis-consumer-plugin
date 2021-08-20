@@ -15,7 +15,7 @@ import software.amazon.awssdk.services.kinesis.KinesisAsyncClientBuilder;
  * @author Fabio Ponciroli
  */
 @Singleton
-public class KinesisAsyncClientProvider implements Provider<KinesisAsyncClient> {
+class KinesisAsyncClientProvider implements Provider<KinesisAsyncClient> {
   private final GlobalKinesisConfiguration globalKinesisConfiguration;
 
   @Inject

@@ -11,6 +11,7 @@ import org.acegisecurity.context.SecurityContextHolder;
 /**
  * Extension point to implement by external applications to listen to records
  * coming from a Kinesis stream. The external application has to:
+ *
  * <ul>
  *  <il>Specify which stream to listen to overriding <code>getStreamName</code></il>
  *  <il>Implement the logic upon record receive by overriding <code>onReceive
