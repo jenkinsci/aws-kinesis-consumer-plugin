@@ -19,7 +19,7 @@ import software.amazon.kinesis.processor.ShardRecordProcessor;
  * @author Fabio Ponciroli
  */
 public class KinesisRecordProcessor implements ShardRecordProcessor {
-  interface Factory {
+  public interface Factory {
     KinesisRecordProcessor create(String streamName);
   }
 
