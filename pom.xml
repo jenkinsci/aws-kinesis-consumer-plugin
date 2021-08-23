@@ -34,7 +34,7 @@
 
         <jmockit.version>1.38</jmockit.version>
         <kinesis.client.version>2.3.4</kinesis.client.version>
-        <kinesis.version>2.15.32</kinesis.version>
+        <kinesis.version>2.17.24</kinesis.version>
         <sdk.core.version>2.15.32</sdk.core.version>
         <amazon.glue.version>1.0.0</amazon.glue.version>
         <netty.nio.client.version>2.15.32</netty.nio.client.version>
