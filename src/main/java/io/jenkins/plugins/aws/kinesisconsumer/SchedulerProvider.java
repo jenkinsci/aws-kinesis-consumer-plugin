@@ -15,7 +15,7 @@ import software.amazon.kinesis.retrieval.RetrievalConfig;
  * Provider of Kinesis Scheduler
  *
  * @author Fabio Ponciroli
- **/
+ */
 public class SchedulerProvider implements Provider<Scheduler> {
 
   private final GlobalKinesisConfiguration configuration;
