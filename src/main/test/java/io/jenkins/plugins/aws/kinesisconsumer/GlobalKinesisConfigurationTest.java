@@ -21,7 +21,7 @@ public class GlobalKinesisConfigurationTest {
     c.setLocalEndpoint("http://localhost:4566");
     c.setRegion("eu-east-1");
     c.setKinesisConsumerEnabled(true);
-    c.setKinesisStreamItems(ImmutableList.of(new KinesisStreamItem("stream_foo")));
+    c.setKinesisStreamItems(ImmutableList.of(new KinesisStreamItem("stream_foo", "LATEST")));
     c.save();
     c.load();
   }
@@ -61,5 +61,27 @@ public class GlobalKinesisConfigurationTest {
     FormValidation result = c.doCheckRegion("us-east-1");
 
     assertEquals(result.kind, FormValidation.Kind.OK);
+  }
+
+  @Test
+  public void shouldCheckInvalidInitialPositionInStream() {
+    GlobalKinesisConfiguration c = GlobalKinesisConfiguration.get();
+
+    FormValidation result = c.doCheckInitialPositionInStream("foo-bar");
+
+    assertEquals(result.kind, FormValidation.Kind.ERROR);
+    assertTrue(result.getMessage().contains("not a valid initial position"));
+  }
+
+  @Test
+  public void shouldCheckInitialPositionInStream() {
+    GlobalKinesisConfiguration c = GlobalKinesisConfiguration.get();
+
+    assertEquals(c.doCheckInitialPositionInStream("LATEST").kind, FormValidation.Kind.OK);
+    assertEquals(c.doCheckInitialPositionInStream("lAtEsT").kind,
+     FormValidation.Kind.OK);
+    assertEquals(c.doCheckInitialPositionInStream("TRIM_HORIZON").kind, FormValidation.Kind.OK);
+    assertEquals(c.doCheckInitialPositionInStream("tRiM_HoRiZoN").kind,
+     FormValidation.Kind.OK);
   }
 }

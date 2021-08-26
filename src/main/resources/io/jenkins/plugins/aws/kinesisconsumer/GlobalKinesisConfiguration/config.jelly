@@ -25,6 +25,10 @@
             <f:entry title="${%Stream name}" field="streamName">
               <f:textbox />
             </f:entry>
+            <f:entry title="${%Initial position in stream}"
+                     field="initialPositionInStream">
+              <f:textbox />
+            </f:entry>
             <f:entry title="">
               <f:repeatableDeleteButton />
             </f:entry>

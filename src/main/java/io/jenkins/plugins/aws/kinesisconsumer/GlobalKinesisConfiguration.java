@@ -16,6 +16,7 @@ import org.kohsuke.stapler.StaplerRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import software.amazon.awssdk.regions.Region;
+import software.amazon.kinesis.common.InitialPositionInStream;
 
 /**
  * Class representing the Global Kinesis configuration
@@ -168,6 +169,30 @@ public class GlobalKinesisConfiguration extends GlobalConfiguration {
   }
 
   /**
+   * Checks AWS Kinesis initial stream position is valid.
+   *
+   * @param value the initial position in the stream. Valid values: LATEST, TRIM_HORIZON
+   * @return FormValidation object that indicates ok or error.
+   */
+  public FormValidation doCheckInitialPositionInStream(@QueryParameter String value) {
+    String val = StringUtils.stripToNull(value);
+    if (val == null) {
+      return FormValidation.ok();
+    }
+
+    if (value.equalsIgnoreCase(InitialPositionInStream.TRIM_HORIZON.toString())
+        || value.equalsIgnoreCase(InitialPositionInStream.LATEST.toString()))
+      return FormValidation.ok();
+
+    String errorMessage =
+        String.format(
+            "'%s' is not a valid initial position. Valid positions:" + " TRIM_HORIZON, LATEST",
+            value);
+    LOGGER.error(errorMessage);
+    return FormValidation.error(errorMessage);
+  }
+
+  /**
    *
    * @param req
    *          <code>StaplerRequest</code> submitted when saving the
@@ -185,5 +210,10 @@ public class GlobalKinesisConfiguration extends GlobalConfiguration {
     req.bindJSON(this, json);
     save();
     return true;
+  }
+
+  public KinesisStreamItem getKinesisStreamItemsForStream(String streamName) {
+    // TODO: need to implement for multiple KinesisStreamItem
+    return this.getKinesisStreamItems().get(0);
   }
 }
