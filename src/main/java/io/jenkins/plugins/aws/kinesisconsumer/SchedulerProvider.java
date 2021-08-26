@@ -6,14 +6,16 @@ import software.amazon.awssdk.services.cloudwatch.CloudWatchAsyncClient;
 import software.amazon.awssdk.services.dynamodb.DynamoDbAsyncClient;
 import software.amazon.awssdk.services.kinesis.KinesisAsyncClient;
 import software.amazon.kinesis.common.ConfigsBuilder;
+import software.amazon.kinesis.common.InitialPositionInStream;
+import software.amazon.kinesis.common.InitialPositionInStreamExtended;
 import software.amazon.kinesis.coordinator.Scheduler;
 import software.amazon.kinesis.retrieval.RetrievalConfig;
 
 /**
-*  Provider of Kinesis Scheduler
-*
-*  @author Fabio Ponciroli
-**/
+ * Provider of Kinesis Scheduler
+ *
+ * @author Fabio Ponciroli
+ **/
 public class SchedulerProvider implements Provider<Scheduler> {
 
   private final GlobalKinesisConfiguration configuration;
@@ -78,7 +80,18 @@ public class SchedulerProvider implements Provider<Scheduler> {
         configsBuilder.lifecycleConfig(),
         configsBuilder.metricsConfig(),
         configsBuilder.processorConfig(),
-        retrievalConfig);
+        getRetrievalConfig());
+  }
+
+  private RetrievalConfig getRetrievalConfig() {
+    RetrievalConfig retrievalConfig = configsBuilder.retrievalConfig();
+    retrievalConfig.initialPositionInStreamExtended(
+        InitialPositionInStreamExtended.newInitialPosition(
+            InitialPositionInStream.valueOf(
+                configuration
+                    .getKinesisStreamItemsForStream(streamName)
+                    .getInitialPositionInStream())));
+    return retrievalConfig;
   }
 
   private static String getWorkerIdentifier(String streamName) {

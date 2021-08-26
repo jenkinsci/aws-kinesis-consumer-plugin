@@ -15,6 +15,7 @@ import org.kohsuke.stapler.DataBoundConstructor;
  */
 public class KinesisStreamItem implements Describable<KinesisStreamItem> {
   private String streamName = null;
+  private String initialPositionInStream = null;
 
   /**
    * Creates KinesisStreamItem instance.
@@ -22,8 +23,9 @@ public class KinesisStreamItem implements Describable<KinesisStreamItem> {
    * @param streamName the queue name.
    */
   @DataBoundConstructor
-  public KinesisStreamItem(String streamName) {
+  public KinesisStreamItem(String streamName, String initialPositionInStream) {
     this.streamName = StringUtils.stripToNull(streamName);
+    this.initialPositionInStream = StringUtils.stripToNull(initialPositionInStream);
   }
 
   /**
@@ -41,6 +43,28 @@ public class KinesisStreamItem implements Describable<KinesisStreamItem> {
    * @param streamName stream name
    */
   public void setStreamName(String streamName) {
+    this.streamName = streamName;
+  }
+
+  /**
+   * Get the initial position in the Kinesis stream Valid values are: LATEST or TRIM_HORIZON. Not
+   * all the positions have been implemented for the time being.
+   *
+   * @see <a
+   *     href="https://docs.aws.amazon.com/kinesis/latest/APIReference/API_StartingPosition.html">Kinesis
+   *     Staring Positions</a>
+   * @return the initial position in the Kinesis stream
+   */
+  public String getInitialPositionInStream() {
+    return initialPositionInStream == null ? "TRIM_HORIZON" : initialPositionInStream;
+  }
+
+  /**
+   * Set the initial position in the Kinesis stream
+   *
+   * @param initialPositionInStream initial position in the Kinesis stream
+   */
+  public void setInitialPositionInStream(String initialPositionInStream) {
     this.streamName = streamName;
   }
 
