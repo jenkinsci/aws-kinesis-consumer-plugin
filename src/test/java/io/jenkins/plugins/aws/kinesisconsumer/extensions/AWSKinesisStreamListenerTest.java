@@ -160,8 +160,7 @@ public class AWSKinesisStreamListenerTest {
     globalKinesisConfiguration.setLocalEndpoint(
         localstack.getEndpointOverride(KINESIS).toASCIIString());
     globalKinesisConfiguration.setRegion(localstack.getRegion());
-    KinesisStreamItem kinesisStreamItem = new KinesisStreamItem(STREAM_NAME,
-    "TRIM_HORIZON");
+    KinesisStreamItem kinesisStreamItem = new KinesisStreamItem(STREAM_NAME, "TRIM_HORIZON");
 
     globalKinesisConfiguration.setKinesisStreamItems(Collections.singletonList(kinesisStreamItem));
 
@@ -169,8 +168,7 @@ public class AWSKinesisStreamListenerTest {
     return globalKinesisConfiguration;
   }
 
-  private void createStreamAndWait()
-      throws InterruptedException {
+  private void createStreamAndWait() throws InterruptedException {
     createStreamAsync(STREAM_NAME);
     WaitUtil.waitUntil(
         () ->
@@ -178,7 +176,8 @@ public class AWSKinesisStreamListenerTest {
                 .describeStream(DescribeStreamRequest.builder().streamName(STREAM_NAME).build())
                 .streamDescription()
                 .streamStatus()
-                .equals(StreamStatus.ACTIVE), STREAM_CREATION_TIMEOUT);
+                .equals(StreamStatus.ACTIVE),
+        STREAM_CREATION_TIMEOUT);
   }
 
   private void waitForLeaseTable() throws InterruptedException {
@@ -187,12 +186,15 @@ public class AWSKinesisStreamListenerTest {
         () -> {
           try {
             ScanResponse sr =
-                dynamoDbAsynClient.scan(ScanRequest.builder().tableName(LEASE_TABLE_NAME).build()).get();
+                dynamoDbAsynClient
+                    .scan(ScanRequest.builder().tableName(LEASE_TABLE_NAME).build())
+                    .get();
             return !sr.items().isEmpty();
           } catch (ExecutionException | InterruptedException ignored) {
           }
           return false;
-        }, TABLE_CREATION_TIMEOUT);
+        },
+        TABLE_CREATION_TIMEOUT);
   }
 
   private void createStreamAsync(String streamName) {

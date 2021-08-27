@@ -18,6 +18,25 @@
                     <maskClasses>com.google.common.</maskClasses>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.theoryinpractise</groupId>
+                <artifactId>googleformatter-maven-plugin</artifactId>
+                <version>1.7.3</version>
+                <executions>
+                    <execution>
+                        <id>reformat-sources</id>
+                        <configuration>
+                            <style>GOOGLE</style>
+                            <filterModified>false</filterModified>
+                            <skip>false</skip>
+                        </configuration>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <groupId>io.jenkins.plugins</groupId>

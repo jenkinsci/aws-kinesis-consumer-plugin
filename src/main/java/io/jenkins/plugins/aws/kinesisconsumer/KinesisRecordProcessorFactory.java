@@ -6,9 +6,8 @@ import software.amazon.kinesis.processor.ShardRecordProcessor;
 import software.amazon.kinesis.processor.ShardRecordProcessorFactory;
 
 /**
- * Factory to create <code>KinesisRecordProcessor</code> instances.
- * The Kinesis Client Library will instantiate <code>KinesisRecordProcessor</code>
- * to process data records fetched from Kinesis.
+ * Factory to create <code>KinesisRecordProcessor</code> instances. The Kinesis Client Library will
+ * instantiate <code>KinesisRecordProcessor</code> to process data records fetched from Kinesis.
  *
  * @author Fabio Ponciroli
  */
