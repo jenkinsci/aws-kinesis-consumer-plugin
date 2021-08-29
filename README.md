@@ -33,6 +33,23 @@ Following is the Extension Point that will have to be implemented:
 
 > io.jenkins.plugins.aws.kinesisconsumer.extensions.AWSKinesisStreamListener
 
+Here an example of listener implementation:
+
+    @Extension
+    public static class DemoListener extends AWSKinesisStreamListener {
+        public DemoListener() {}
+
+        @Override
+        public String getStreamName() {
+          return "stream-to-listen";
+        }
+
+        @Override
+        public void onReceive(byte[] byteRecord) {
+          // The logic to process the record goes here
+        }
+    }
+
 Plugin Releases
 ---
 
