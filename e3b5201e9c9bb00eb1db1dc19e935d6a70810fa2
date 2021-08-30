@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20dbb63d_d67365e6",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/KinesisStreamItem.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-08-30T20:05:53Z",
+      "side": 1,
+      "message": "From @Tony:\n\n\u003e Why is this a property of the stream rather than a global property?\n\u003e In the configuration this is set globally right?\n\nI am a bit confused about that, since stream name and the and he starting position are parameters of software.amazon.kinesis.common.ConfigsBuilder, hence they seem to be tight together. I am going to have a look at the docs again.",
+      "range": {
+        "startLine": 26,
+        "startChar": 46,
+        "endLine": 26,
+        "endChar": 76
+      },
+      "revId": "e3b5201e9c9bb00eb1db1dc19e935d6a70810fa2",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
