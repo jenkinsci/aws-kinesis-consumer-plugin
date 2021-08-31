@@ -3,7 +3,6 @@ package io.jenkins.plugins.aws.kinesisconsumer.extensions;
 import hudson.ExtensionList;
 import hudson.ExtensionPoint;
 import hudson.security.ACL;
-import java.util.Objects;
 import jenkins.model.Jenkins;
 import org.acegisecurity.context.SecurityContext;
 import org.acegisecurity.context.SecurityContextHolder;
@@ -60,7 +59,11 @@ public abstract class AWSKinesisStreamListener implements ExtensionPoint {
    * @return the extension list.
    */
   public static ExtensionList<AWSKinesisStreamListener> getAllRegisteredListeners() {
-    return Objects.requireNonNull(Jenkins.getInstanceOrNull())
-        .getExtensionList(AWSKinesisStreamListener.class);
+    Jenkins jenkins = Jenkins.getInstanceOrNull();
+    if (jenkins != null) {
+      return jenkins.getExtensionList(AWSKinesisStreamListener.class);
+    }
+
+    throw new IllegalStateException("Jenkins is not started or is stopped");
   }
 }

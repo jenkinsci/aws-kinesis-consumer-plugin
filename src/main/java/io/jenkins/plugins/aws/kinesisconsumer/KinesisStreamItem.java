@@ -65,7 +65,7 @@ public class KinesisStreamItem implements Describable<KinesisStreamItem> {
    * @param initialPositionInStream initial position in the Kinesis stream
    */
   public void setInitialPositionInStream(String initialPositionInStream) {
-    this.streamName = streamName;
+    this.initialPositionInStream = initialPositionInStream;
   }
 
   @Extension

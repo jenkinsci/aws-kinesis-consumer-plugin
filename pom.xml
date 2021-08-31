@@ -46,7 +46,7 @@
         <commons.digester.version>2.1</commons.digester.version>
         <com.google.flogger.version>0.6</com.google.flogger.version>
         <google.guava.version>26.0-jre</google.guava.version>
-        <com.fasterxml.jackson.version>2.10.4</com.fasterxml.jackson.version>
+        <com.fasterxml.jackson.version>2.12.3</com.fasterxml.jackson.version>
         <apache.common.version>3.12.0</apache.common.version>
         <apache.commons.compress.version>1.20</apache.commons.compress.version>
         <google.inject.extensions.version>4.0</google.inject.extensions.version>
@@ -205,6 +205,11 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+            <version>${com.fasterxml.jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
             <version>${com.fasterxml.jackson.version}</version>
         </dependency>
         <dependency>
