@@ -22,6 +22,30 @@
       },
       "revId": "e3b5201e9c9bb00eb1db1dc19e935d6a70810fa2",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "803ad7a9_14b3d597",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/KinesisStreamItem.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-08-31T10:21:05Z",
+      "side": 1,
+      "message": "I confirm this is a per stream configuration hence it goes together with the stream name in the KinesisStreamItem.",
+      "parentUuid": "20dbb63d_d67365e6",
+      "range": {
+        "startLine": 26,
+        "startChar": 46,
+        "endLine": 26,
+        "endChar": 76
+      },
+      "revId": "e3b5201e9c9bb00eb1db1dc19e935d6a70810fa2",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
