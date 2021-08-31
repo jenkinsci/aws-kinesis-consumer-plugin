@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ead100e_bb31c9ec",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/extensions/AWSKinesisStreamListener.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2021-08-31T14:14:05Z",
+      "side": 1,
+      "message": "IllegalStateException",
+      "range": {
+        "startLine": 68,
+        "startChar": 14,
+        "endLine": 68,
+        "endChar": 34
+      },
+      "revId": "36e0ff80d63359ae5336fbc5cc7678a6d6873ac7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
