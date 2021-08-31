@@ -60,7 +60,11 @@ public abstract class AWSKinesisStreamListener implements ExtensionPoint {
    * @return the extension list.
    */
   public static ExtensionList<AWSKinesisStreamListener> getAllRegisteredListeners() {
-    return Objects.requireNonNull(Jenkins.getInstanceOrNull())
-        .getExtensionList(AWSKinesisStreamListener.class);
+    Jenkins jenkins = Jenkins.getInstanceOrNull();
+    if (jenkins != null) {
+      return jenkins.getExtensionList(AWSKinesisStreamListener.class);
+    }
+
+    throw new NullPointerException("Jenkins is not started or is stopped");
   }
 }

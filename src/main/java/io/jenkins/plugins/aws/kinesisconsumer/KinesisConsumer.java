@@ -20,7 +20,6 @@ public class KinesisConsumer {
 
   private static final FluentLogger logger = FluentLogger.forEnclosingClass();
 
-  private String streamName;
   private Scheduler kinesisScheduler;
   private final SchedulerProvider.Factory schedulerProviderFactory;
   private GlobalKinesisConfiguration configuration;
@@ -45,7 +44,6 @@ public class KinesisConsumer {
   }
 
   private void subscribe(String streamName) {
-    this.streamName = streamName;
     this.kinesisScheduler = schedulerProviderFactory.create(streamName).get();
     Thread schedulerThread = new Thread(kinesisScheduler);
     schedulerThread.setDaemon(true);
