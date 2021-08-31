@@ -10,7 +10,7 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbAsyncClient;
 import software.amazon.awssdk.services.dynamodb.DynamoDbAsyncClientBuilder;
 
 /**
- * Provider of <class>DynamoDbAsyncClient</class>
+ * Provider of {@link DynamoDbAsyncClient}
  *
  * @author Fabio Ponciroli
  */

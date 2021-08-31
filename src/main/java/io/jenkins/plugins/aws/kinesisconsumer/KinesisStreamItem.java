@@ -38,7 +38,7 @@ public class KinesisStreamItem implements Describable<KinesisStreamItem> {
   }
 
   /**
-   * Set the stram name
+   * Set the stream name
    *
    * @param streamName stream name
    */
@@ -77,9 +77,9 @@ public class KinesisStreamItem implements Describable<KinesisStreamItem> {
   }
 
   /**
-   * Get a Descriptor<KinesisStreamItem> instance
+   * Get a {@link Descriptor} of {@link KinesisStreamItem} instance
    *
-   * @return a Descriptor<KinesisStreamItem> instance
+   * @return a {@link Descriptor} of {@link KinesisStreamItem} instance
    */
   @Override
   @NonNull

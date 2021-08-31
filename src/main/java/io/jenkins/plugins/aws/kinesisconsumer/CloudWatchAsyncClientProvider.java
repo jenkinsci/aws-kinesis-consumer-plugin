@@ -10,7 +10,7 @@ import software.amazon.awssdk.services.cloudwatch.CloudWatchAsyncClient;
 import software.amazon.awssdk.services.cloudwatch.CloudWatchAsyncClientBuilder;
 
 /**
- * Provider of <class>CloudWatchAsyncClient</class>
+ * Provider of {@link CloudWatchAsyncClient}
  *
  * @author Fabio Ponciroli
  */

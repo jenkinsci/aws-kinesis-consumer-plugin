@@ -8,8 +8,8 @@ import hudson.model.Saveable;
 import hudson.model.listeners.SaveableListener;
 
 /**
- * Extends <code>SaveableListener</code> to listen to
- * <code>GlobalKinesisConfiguration</code> changes.
+ * Extends {@link SaveableListener} to listen to
+ * {@link GlobalKinesisConfiguration} changes.
  *
  * @author Fabio Ponciroli
  */

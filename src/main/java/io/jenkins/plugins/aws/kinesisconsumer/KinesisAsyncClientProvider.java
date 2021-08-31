@@ -10,7 +10,7 @@ import software.amazon.awssdk.services.kinesis.KinesisAsyncClient;
 import software.amazon.awssdk.services.kinesis.KinesisAsyncClientBuilder;
 
 /**
- * Provider of <class>KinesisAsyncClient</class>
+ * Provider of {@link KinesisAsyncClient}
  *
  * @author Fabio Ponciroli
  */
