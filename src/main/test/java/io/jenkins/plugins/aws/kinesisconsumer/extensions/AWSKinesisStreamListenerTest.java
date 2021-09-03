@@ -112,9 +112,13 @@ public class AWSKinesisStreamListenerTest {
   public static class TestListener extends AWSKinesisStreamListener {
     private int recordReceivedCounter;
 
-    public TestListener() { recordReceivedCounter = 0; }
+    public TestListener() {
+      recordReceivedCounter = 0;
+    }
 
-    int getRecordReceivedCounter() { return recordReceivedCounter; }
+    int getRecordReceivedCounter() {
+      return recordReceivedCounter;
+    }
 
     @Override
     public String getStreamName() {
@@ -122,7 +126,9 @@ public class AWSKinesisStreamListenerTest {
     }
 
     @Override
-    public void onReceive(byte[] byteRecord) { recordReceivedCounter++; }
+    public void onReceive(byte[] byteRecord) {
+      recordReceivedCounter++;
+    }
   }
 
   @Test
@@ -133,7 +139,7 @@ public class AWSKinesisStreamListenerTest {
 
     waitForLeaseTable();
 
-    ExtensionList <AWSKinesisStreamListener> extensionList =
+    ExtensionList<AWSKinesisStreamListener> extensionList =
         AWSKinesisStreamListener.getAllRegisteredListeners();
     assertEquals(1, extensionList.size());
 
@@ -141,8 +147,7 @@ public class AWSKinesisStreamListenerTest {
 
     sendKinesisRecord();
 
-    WaitUtil.waitUntil(() -> testListener.getRecordReceivedCounter() == 1,
-     RECORD_CONSUMED_TIMEOUT);
+    WaitUtil.waitUntil(() -> testListener.getRecordReceivedCounter() == 1, RECORD_CONSUMED_TIMEOUT);
   }
 
   private void sendKinesisRecord() {
@@ -161,8 +166,7 @@ public class AWSKinesisStreamListenerTest {
     globalKinesisConfiguration.setLocalEndpoint(
         localstack.getEndpointOverride(KINESIS).toASCIIString());
     globalKinesisConfiguration.setRegion(localstack.getRegion());
-    KinesisStreamItem kinesisStreamItem = new KinesisStreamItem(STREAM_NAME,
-    "TRIM_HORIZON");
+    KinesisStreamItem kinesisStreamItem = new KinesisStreamItem(STREAM_NAME, "TRIM_HORIZON");
 
     globalKinesisConfiguration.setKinesisStreamItems(Collections.singletonList(kinesisStreamItem));
 
@@ -170,8 +174,7 @@ public class AWSKinesisStreamListenerTest {
     return globalKinesisConfiguration;
   }
 
-  private void createStreamAndWait()
-      throws InterruptedException {
+  private void createStreamAndWait() throws InterruptedException {
     createStreamAsync(STREAM_NAME);
     WaitUtil.waitUntil(
         () ->
@@ -179,7 +182,8 @@ public class AWSKinesisStreamListenerTest {
                 .describeStream(DescribeStreamRequest.builder().streamName(STREAM_NAME).build())
                 .streamDescription()
                 .streamStatus()
-                .equals(StreamStatus.ACTIVE), STREAM_CREATION_TIMEOUT);
+                .equals(StreamStatus.ACTIVE),
+        STREAM_CREATION_TIMEOUT);
   }
 
   private void waitForLeaseTable() throws InterruptedException {
@@ -188,12 +192,15 @@ public class AWSKinesisStreamListenerTest {
         () -> {
           try {
             ScanResponse sr =
-                dynamoDbAsynClient.scan(ScanRequest.builder().tableName(LEASE_TABLE_NAME).build()).get();
+                dynamoDbAsynClient
+                    .scan(ScanRequest.builder().tableName(LEASE_TABLE_NAME).build())
+                    .get();
             return !sr.items().isEmpty();
           } catch (ExecutionException | InterruptedException ignored) {
           }
           return false;
-        }, TABLE_CREATION_TIMEOUT);
+        },
+        TABLE_CREATION_TIMEOUT);
   }
 
   private void createStreamAsync(String streamName) {

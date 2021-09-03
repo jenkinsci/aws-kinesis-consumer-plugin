@@ -193,14 +193,9 @@ public class GlobalKinesisConfiguration extends GlobalConfiguration {
   }
 
   /**
-   *
-   * @param req
-   *          {@link StaplerRequest} submitted when saving the
-   *          configuration page
-   * @param json
-   *          JSON containing the configuration parameters set
-   * @return true if the configuration was correctly saved,
-   *          false otherwise
+   * @param req {@link StaplerRequest} submitted when saving the configuration page
+   * @param json JSON containing the configuration parameters set
+   * @return true if the configuration was correctly saved, false otherwise
    */
   @Override
   public boolean configure(StaplerRequest req, JSONObject json) {
