@@ -8,12 +8,14 @@ import org.acegisecurity.context.SecurityContext;
 import org.acegisecurity.context.SecurityContextHolder;
 
 /**
- * Extension point to implement by external applications to listen to records
- * coming from a Kinesis stream. The external application has to:
+ * Extension point to implement by external applications to listen to records coming from a Kinesis
+ * stream. The external application has to:
  *
  * <ul>
- *  <li>Specify which stream to listen to overriding {@link AWSKinesisStreamListener#getStreamName()}</li>
- *  <li>Implement the logic upon record receive by overriding {@link AWSKinesisStreamListener#onReceive(byte[])}</li>
+ *   <li>Specify which stream to listen to overriding {@link
+ *       AWSKinesisStreamListener#getStreamName()}
+ *   <li>Implement the logic upon record receive by overriding {@link
+ *       AWSKinesisStreamListener#onReceive(byte[])}
  * </ul>
  *
  * @author Fabio Ponciroli
