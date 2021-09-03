@@ -1,8 +1,6 @@
 package io.jenkins.plugins.aws.kinesisconsumer.extensions;
 
 import static org.junit.Assert.assertEquals;
-import static org.testcontainers.containers.localstack.LocalStackContainer.Service.CLOUDWATCH;
-import static org.testcontainers.containers.localstack.LocalStackContainer.Service.DYNAMODB;
 import static org.testcontainers.containers.localstack.LocalStackContainer.Service.KINESIS;
 
 import com.google.inject.AbstractModule;
@@ -14,53 +12,25 @@ import io.jenkins.plugins.aws.kinesisconsumer.GlobalKinesisConfiguration;
 import io.jenkins.plugins.aws.kinesisconsumer.KinesisConsumer;
 import io.jenkins.plugins.aws.kinesisconsumer.KinesisConsumerModule;
 import io.jenkins.plugins.aws.kinesisconsumer.KinesisStreamItem;
+import io.jenkins.plugins.aws.kinesisconsumer.LocalStackTest;
 import io.jenkins.plugins.aws.kinesisconsumer.utils.WaitUtil;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.concurrent.ExecutionException;
-import org.junit.After;
 import org.junit.Before;
-import org.junit.ClassRule;
-import org.junit.Rule;
 import org.junit.Test;
-import org.jvnet.hudson.test.For;
-import org.jvnet.hudson.test.JenkinsRule;
-import org.testcontainers.containers.localstack.LocalStackContainer;
-import org.testcontainers.utility.DockerImageName;
-import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
-import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.core.SdkBytes;
-import software.amazon.awssdk.http.apache.ApacheHttpClient;
-import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbAsyncClient;
 import software.amazon.awssdk.services.dynamodb.model.ScanRequest;
 import software.amazon.awssdk.services.dynamodb.model.ScanResponse;
-import software.amazon.awssdk.services.kinesis.KinesisClient;
-import software.amazon.awssdk.services.kinesis.model.CreateStreamRequest;
-import software.amazon.awssdk.services.kinesis.model.DescribeStreamRequest;
 import software.amazon.awssdk.services.kinesis.model.PutRecordRequest;
-import software.amazon.awssdk.services.kinesis.model.StreamStatus;
 
-@For(AWSKinesisStreamListener.class)
-public class AWSKinesisStreamListenerTest {
-  @Rule public JenkinsRule j = new JenkinsRule();
-
+public class AWSKinesisStreamListenerTest extends LocalStackTest {
   public static final String LEASE_TABLE_NAME = "jenkins-kinesis-consumer-test-stream";
-  private static final Duration STREAM_CREATION_TIMEOUT = Duration.ofSeconds(10);
   private static final Duration TABLE_CREATION_TIMEOUT = Duration.ofSeconds(60);
   private static final Duration RECORD_CONSUMED_TIMEOUT = Duration.ofMinutes(5);
 
   public static final String STREAM_NAME = "test-stream";
-  private KinesisClient kinesisClient;
-
-  private static final int LOCALSTACK_PORT = 4566;
-
-  @ClassRule
-  public static LocalStackContainer localstack =
-      new LocalStackContainer(DockerImageName.parse("localstack" + "/localstack:0.12.17"))
-          .withServices(DYNAMODB, KINESIS, CLOUDWATCH)
-          .withEnv("USE_SSL", "true")
-          .withExposedPorts(LOCALSTACK_PORT);
 
   private static Injector injector;
   private GlobalKinesisConfiguration globalKinesisConfiguration;
@@ -79,19 +49,8 @@ public class AWSKinesisStreamListenerTest {
 
   @Before
   public void setUp() throws Exception {
-    localstack.start();
+    super.setUp();
     globalKinesisConfiguration = initGlobalConfig();
-
-    kinesisClient =
-        KinesisClient.builder()
-            .endpointOverride(localstack.getEndpointOverride(KINESIS))
-            .credentialsProvider(
-                StaticCredentialsProvider.create(
-                    AwsBasicCredentials.create(
-                        localstack.getAccessKey(), localstack.getSecretKey())))
-            .httpClient(ApacheHttpClient.create())
-            .region(Region.of(localstack.getRegion()))
-            .build();
 
     System.setProperty("endpoint", localstack.getEndpointOverride(KINESIS).toASCIIString());
     System.setProperty("region", localstack.getRegion());
@@ -101,11 +60,6 @@ public class AWSKinesisStreamListenerTest {
     injector = Guice.createInjector(new TestKinesisConsumerModule());
     kinesisConsumerFactory = injector.getInstance(KinesisConsumer.Factory.class);
     dynamoDbAsynClient = injector.getInstance(DynamoDbAsyncClient.class);
-  }
-
-  @After
-  public void tearDown() {
-    localstack.close();
   }
 
   @Extension
@@ -133,7 +87,7 @@ public class AWSKinesisStreamListenerTest {
 
   @Test
   public void shouldConsumeAnEventPublishedToAStream() throws Exception {
-    createStreamAndWait();
+    createStreamAndWait(STREAM_NAME);
     KinesisConsumer kinesisConsumer = kinesisConsumerFactory.create(globalKinesisConfiguration);
     kinesisConsumer.start();
 
@@ -174,18 +128,6 @@ public class AWSKinesisStreamListenerTest {
     return globalKinesisConfiguration;
   }
 
-  private void createStreamAndWait() throws InterruptedException {
-    createStreamAsync(STREAM_NAME);
-    WaitUtil.waitUntil(
-        () ->
-            kinesisClient
-                .describeStream(DescribeStreamRequest.builder().streamName(STREAM_NAME).build())
-                .streamDescription()
-                .streamStatus()
-                .equals(StreamStatus.ACTIVE),
-        STREAM_CREATION_TIMEOUT);
-  }
-
   private void waitForLeaseTable() throws InterruptedException {
 
     WaitUtil.waitUntil(
@@ -201,10 +143,5 @@ public class AWSKinesisStreamListenerTest {
           return false;
         },
         TABLE_CREATION_TIMEOUT);
-  }
-
-  private void createStreamAsync(String streamName) {
-    kinesisClient.createStream(
-        CreateStreamRequest.builder().streamName(streamName).shardCount(1).build());
   }
 }
