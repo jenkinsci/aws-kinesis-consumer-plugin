@@ -13,8 +13,8 @@ import software.amazon.kinesis.lifecycle.events.ShutdownRequestedInput;
 import software.amazon.kinesis.processor.ShardRecordProcessor;
 
 /**
- * Implements the {@link ShardRecordProcessor} interface to process data
- * records fetched from Amazon Kinesis
+ * Implements the {@link ShardRecordProcessor} interface to process data records fetched from Amazon
+ * Kinesis
  *
  * @author Fabio Ponciroli
  */
@@ -36,8 +36,8 @@ public class KinesisRecordProcessor implements ShardRecordProcessor {
   }
 
   /**
-   * Forward each byte record of {@link ProcessRecordsInput} to the
-   * {@link AWSKinesisStreamListener} interface
+   * Forward each byte record of {@link ProcessRecordsInput} to the {@link AWSKinesisStreamListener}
+   * interface
    *
    * @param processRecordsInput {@link ProcessRecordsInput} to process
    */
