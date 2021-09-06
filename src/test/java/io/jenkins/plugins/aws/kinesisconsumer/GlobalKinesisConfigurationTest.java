@@ -78,10 +78,8 @@ public class GlobalKinesisConfigurationTest {
     GlobalKinesisConfiguration c = GlobalKinesisConfiguration.get();
 
     assertEquals(c.doCheckInitialPositionInStream("LATEST").kind, FormValidation.Kind.OK);
-    assertEquals(c.doCheckInitialPositionInStream("lAtEsT").kind,
-     FormValidation.Kind.OK);
+    assertEquals(c.doCheckInitialPositionInStream("lAtEsT").kind, FormValidation.Kind.OK);
     assertEquals(c.doCheckInitialPositionInStream("TRIM_HORIZON").kind, FormValidation.Kind.OK);
-    assertEquals(c.doCheckInitialPositionInStream("tRiM_HoRiZoN").kind,
-     FormValidation.Kind.OK);
+    assertEquals(c.doCheckInitialPositionInStream("tRiM_HoRiZoN").kind, FormValidation.Kind.OK);
   }
 }
