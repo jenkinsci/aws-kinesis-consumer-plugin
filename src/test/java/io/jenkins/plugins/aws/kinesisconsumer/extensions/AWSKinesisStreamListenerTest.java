@@ -115,6 +115,7 @@ public class AWSKinesisStreamListenerTest extends BaseLocalStack {
     globalKinesisConfiguration.setLocalEndpoint(
         localstack.getEndpointOverride(KINESIS).toASCIIString());
     globalKinesisConfiguration.setRegion(localstack.getRegion());
+    globalKinesisConfiguration.setApplicationName("jenkins-kinesis-consumer");
     KinesisStreamItem kinesisStreamItem = new KinesisStreamItem(STREAM_NAME, "TRIM_HORIZON");
 
     globalKinesisConfiguration.setKinesisStreamItems(Collections.singletonList(kinesisStreamItem));
