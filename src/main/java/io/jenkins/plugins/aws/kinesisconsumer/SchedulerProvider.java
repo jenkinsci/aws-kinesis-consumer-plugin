@@ -28,8 +28,6 @@ class SchedulerProvider implements Provider<Scheduler> {
   private ConfigsBuilder configsBuilder;
 
   private String streamName;
-  // TODO this should be configurable
-  public static final String APPLICATION_NAME = "jenkins-kinesis-consumer";
 
   @AssistedInject
   SchedulerProvider(
@@ -46,7 +44,7 @@ class SchedulerProvider implements Provider<Scheduler> {
     this.configsBuilder =
         new ConfigsBuilder(
             streamName,
-            cosumerLeaseName(APPLICATION_NAME, streamName),
+            cosumerLeaseName(streamName),
             kinesisAsyncClient,
             dynamoDbAsyncClient,
             cloudWatchAsyncClient,
@@ -82,11 +80,11 @@ class SchedulerProvider implements Provider<Scheduler> {
     return retrievalConfig;
   }
 
-  private static String getWorkerIdentifier(String streamName) {
-    return String.format("klc-worker-%s-%s", APPLICATION_NAME, streamName);
+  private String getWorkerIdentifier(String streamName) {
+    return String.format("klc-worker-%s-%s", configuration.getApplicationName(), streamName);
   }
 
-  private static String cosumerLeaseName(String applicationName, String streamName) {
-    return String.format("%s-%s", applicationName, streamName);
+  private String cosumerLeaseName(String streamName) {
+    return String.format("%s-%s", configuration.getApplicationName(), streamName);
   }
 }
