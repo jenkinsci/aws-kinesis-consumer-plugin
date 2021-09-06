@@ -6,4 +6,5 @@ work/
 .settings/
 .idea/
 .DS_Store
+*.iml
 
