@@ -18,7 +18,6 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.concurrent.ExecutionException;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import software.amazon.awssdk.core.SdkBytes;
 import software.amazon.awssdk.services.dynamodb.DynamoDbAsyncClient;
