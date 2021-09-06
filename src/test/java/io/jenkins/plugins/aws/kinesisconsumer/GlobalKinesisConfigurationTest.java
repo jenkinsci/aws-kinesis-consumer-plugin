@@ -21,6 +21,7 @@ public class GlobalKinesisConfigurationTest {
     c.setLocalEndpoint("http://localhost:4566");
     c.setRegion("eu-east-1");
     c.setKinesisConsumerEnabled(true);
+    c.setApplicationName("jenkins-test");
     c.setKinesisStreamItems(ImmutableList.of(new KinesisStreamItem("stream_foo", "LATEST")));
     c.save();
     c.load();
@@ -81,5 +82,15 @@ public class GlobalKinesisConfigurationTest {
     assertEquals(c.doCheckInitialPositionInStream("lAtEsT").kind, FormValidation.Kind.OK);
     assertEquals(c.doCheckInitialPositionInStream("TRIM_HORIZON").kind, FormValidation.Kind.OK);
     assertEquals(c.doCheckInitialPositionInStream("tRiM_HoRiZoN").kind, FormValidation.Kind.OK);
+  }
+
+  @Test
+  public void shouldCheckInvalidApplicationName() {
+    GlobalKinesisConfiguration c = GlobalKinesisConfiguration.get();
+
+    FormValidation result = c.doCheckApplicationName("");
+
+    assertEquals(result.kind, FormValidation.Kind.ERROR);
+    assertTrue(result.getMessage().contains("Application name is required"));
   }
 }
