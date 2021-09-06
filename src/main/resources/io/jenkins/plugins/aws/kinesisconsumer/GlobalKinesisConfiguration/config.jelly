@@ -19,6 +19,9 @@
     <f:entry title="${%Region}" field="region">
       <f:textbox />
     </f:entry>
+      <f:entry title="${%ApplicationName}" field="applicationName">
+          <f:textbox />
+      </f:entry>
     <f:advanced>
       <f:entry title="${%Local Endpoint}" field="localEndpoint">
         <f:textbox />
