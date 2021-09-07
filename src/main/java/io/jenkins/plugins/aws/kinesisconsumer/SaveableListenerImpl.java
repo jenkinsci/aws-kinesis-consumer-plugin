@@ -14,12 +14,11 @@ import hudson.model.listeners.SaveableListener;
  */
 @Extension
 public class SaveableListenerImpl extends SaveableListener {
-
-  private KinesisConsumer.Factory kinesisConsumerFactory;
+  private KinesisConsumerManager manager;
 
   @Inject
-  public SaveableListenerImpl(KinesisConsumer.Factory kinesisConsumerFactory) {
-    this.kinesisConsumerFactory = kinesisConsumerFactory;
+  public SaveableListenerImpl(KinesisConsumerManager manager) {
+    this.manager = manager;
   }
 
   public SaveableListenerImpl() {}
@@ -37,9 +36,7 @@ public class SaveableListenerImpl extends SaveableListener {
   public final void onChange(Saveable o, XmlFile file) {
     if (o instanceof GlobalKinesisConfiguration) {
       logger.atInfo().log("AWS Kinesis Configuration is updated, restart consumer...");
-      GlobalKinesisConfiguration newConfig = (GlobalKinesisConfiguration) o;
-      KinesisConsumer kinesisConsumer = kinesisConsumerFactory.create(newConfig);
-      kinesisConsumer.start();
+      manager.start((GlobalKinesisConfiguration) o);
     }
     super.onChange(o, file);
   }
