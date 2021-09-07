@@ -1,3 +1,4 @@
-# UUID      	Group Name
+# UUID                  	Group Name
 #
-user:barbasa	user/Fabio Ponciroli (barbasa)
+user:barbasa            	user/Fabio Ponciroli (barbasa)
+user:jenkins-at-gerritci	user/Jenkins at Gerrit-CI (jenkins-at-gerritci)
