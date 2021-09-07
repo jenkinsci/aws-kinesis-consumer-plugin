@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "562085f9_1553caf5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-09-07T19:31:00Z",
+      "side": 1,
+      "message": "The purpose of this change was getting the feedback and that\u0027s working fine. Verifying +1 for that reason.",
+      "revId": "d1f01d918e53938c97e1be70a13db224260e8051",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
