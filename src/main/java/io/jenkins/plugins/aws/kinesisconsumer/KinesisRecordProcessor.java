@@ -1,5 +1,6 @@
 package io.jenkins.plugins.aws.kinesisconsumer;
 
+import com.google.common.flogger.FluentLogger;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
 import io.jenkins.plugins.aws.kinesisconsumer.extensions.AWSKinesisStreamListener;
@@ -19,6 +20,8 @@ import software.amazon.kinesis.processor.ShardRecordProcessor;
  * @author Fabio Ponciroli
  */
 public class KinesisRecordProcessor implements ShardRecordProcessor {
+  private static final FluentLogger logger = FluentLogger.forEnclosingClass();
+
   public interface Factory {
     KinesisRecordProcessor create(String streamName);
   }
@@ -32,7 +35,9 @@ public class KinesisRecordProcessor implements ShardRecordProcessor {
 
   @Override
   public void initialize(InitializationInput initializationInput) {
-    // TODO handle exception
+    logger.atInfo().log(
+        "[streamName: %s] [shardId: %s] Initializing @ Sequence: %s",
+        streamName, initializationInput.shardId(), initializationInput.extendedSequenceNumber());
   }
 
   /**
@@ -52,30 +57,37 @@ public class KinesisRecordProcessor implements ShardRecordProcessor {
                     streamName, new byte[consumerRecord.data().remaining()]);
               });
     } catch (Throwable t) {
-      // TODO handle exception
+      logger.atSevere().withCause(t).log(
+          "[StreamName: %s] Caught throwable while processing records. Aborting.", streamName);
     }
   }
 
   @Override
   public void leaseLost(LeaseLostInput leaseLostInput) {
-    // TODO Add logging
+    logger.atInfo().log("[streamName: %s] lease lost", streamName);
   }
 
   @Override
   public void shardEnded(ShardEndedInput shardEndedInput) {
     try {
+      logger.atInfo().log("[StreamName: %s] Reached shard end checkpointing.", streamName);
       shardEndedInput.checkpointer().checkpoint();
     } catch (ShutdownException | InvalidStateException e) {
-      // TODO handle exception
+      logger.atSevere().withCause(e).log(
+          "[StreamName: %s] Exception while checkpointing at shard end. Giving up.", streamName);
     }
   }
 
   @Override
   public void shutdownRequested(ShutdownRequestedInput shutdownRequestedInput) {
     try {
+      logger.atInfo().log(
+          "[StreamName: %s] Scheduler is shutting down, checkpointing.", streamName);
       shutdownRequestedInput.checkpointer().checkpoint();
     } catch (ShutdownException | InvalidStateException e) {
-      // TODO handle exception
+      logger.atSevere().withCause(e).log(
+          "[StreamName: %s] Exception while checkpointing at requested shutdown. Giving up.",
+          streamName);
     }
   }
 }
