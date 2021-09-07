@@ -49,7 +49,6 @@ public class KinesisConsumer {
 
   /** Stop the scheduler threads to end consuming records from the Kinesis streams */
   public void shutdown() {
-    // TODO this is currently not plugged in
     Future<Boolean> gracefulShutdownFuture = kinesisScheduler.startGracefulShutdown();
     try {
       gracefulShutdownFuture.get(10L, TimeUnit.MILLISECONDS);
