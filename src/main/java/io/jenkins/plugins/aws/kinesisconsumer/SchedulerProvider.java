@@ -22,7 +22,7 @@ class SchedulerProvider implements Provider<Scheduler> {
   private final KinesisAsyncClient kinesisAsyncClient;
 
   interface Factory {
-    SchedulerProvider create(String streamName);
+    SchedulerProvider create(GlobalKinesisConfiguration configuration, String streamName);
   }
 
   private ConfigsBuilder configsBuilder;
@@ -31,11 +31,11 @@ class SchedulerProvider implements Provider<Scheduler> {
 
   @AssistedInject
   SchedulerProvider(
-      GlobalKinesisConfiguration configuration,
       KinesisAsyncClient kinesisAsyncClient,
       DynamoDbAsyncClient dynamoDbAsyncClient,
       CloudWatchAsyncClient cloudWatchAsyncClient,
       KinesisRecordProcessorFactory.Factory kinesisRecordProcessorFactoryFactory,
+      @Assisted GlobalKinesisConfiguration configuration,
       @Assisted String streamName) {
     this.configuration = configuration;
     this.streamName = streamName;

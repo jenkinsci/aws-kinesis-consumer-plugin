@@ -1,5 +1,6 @@
 package io.jenkins.plugins.aws.kinesisconsumer;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.flogger.FluentLogger;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
@@ -21,6 +22,7 @@ public class KinesisConsumer {
   private static final FluentLogger logger = FluentLogger.forEnclosingClass();
 
   private Scheduler kinesisScheduler;
+  private boolean isStarted = false;
   private final SchedulerProvider.Factory schedulerProviderFactory;
   private GlobalKinesisConfiguration configuration;
 
@@ -41,20 +43,29 @@ public class KinesisConsumer {
   }
 
   private void subscribe(String streamName) {
-    this.kinesisScheduler = schedulerProviderFactory.create(streamName).get();
+    this.kinesisScheduler = schedulerProviderFactory.create(configuration, streamName).get();
     Thread schedulerThread = new Thread(kinesisScheduler);
     schedulerThread.setDaemon(true);
     schedulerThread.start();
+    isStarted = true;
   }
 
   /** Stop the scheduler threads to end consuming records from the Kinesis streams */
   public void shutdown() {
-    // TODO this is currently not plugged in
-    Future<Boolean> gracefulShutdownFuture = kinesisScheduler.startGracefulShutdown();
-    try {
-      gracefulShutdownFuture.get(10L, TimeUnit.MILLISECONDS);
-    } catch (Exception e) {
+    if (isStarted) {
+      Future<Boolean> gracefulShutdownFuture = kinesisScheduler.startGracefulShutdown();
+      try {
+        gracefulShutdownFuture.get(10L, TimeUnit.MILLISECONDS);
+      } catch (Exception e) {
 
+      } finally {
+        isStarted = false;
+      }
     }
+  }
+
+  @VisibleForTesting
+  boolean isStarted() {
+    return isStarted;
   }
 }
