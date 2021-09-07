@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8c1e57f_cd9dc646",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-09-07T20:06:58Z",
+      "side": 1,
+      "message": "Good stuff @Tony, we have the first green build !",
+      "revId": "cc7ac7f30af4a1d802cdbea7b39aedca89fc2c6b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
