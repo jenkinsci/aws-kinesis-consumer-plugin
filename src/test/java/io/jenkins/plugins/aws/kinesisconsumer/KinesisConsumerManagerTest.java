@@ -10,11 +10,11 @@ public class KinesisConsumerManagerTest extends BaseLocalStack {
   @Test
   public void shouldShutDownConsumers() throws InterruptedException {
     createStreamAndWait(STREAM_NAME);
-    kinesisConsumerManager.start(globalKinesisConfiguration);
+    kinesisConsumerManager.startAllConsumers(globalKinesisConfiguration);
 
     waitForLeaseTable();
 
-    KinesisConsumer kinesisConsumer = kinesisConsumerManager.getKinesisConsumer();
+    KinesisConsumer kinesisConsumer = kinesisConsumerManager.getKinesisConsumers().get(STREAM_NAME);
     assertTrue(kinesisConsumer.isStarted());
 
     // Shutdown Jenkins
