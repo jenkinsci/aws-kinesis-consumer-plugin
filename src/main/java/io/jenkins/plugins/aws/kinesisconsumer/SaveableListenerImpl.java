@@ -36,7 +36,7 @@ public class SaveableListenerImpl extends SaveableListener {
   public final void onChange(Saveable o, XmlFile file) {
     if (o instanceof GlobalKinesisConfiguration) {
       logger.atInfo().log("AWS Kinesis Configuration is updated, restart consumer...");
-      manager.start((GlobalKinesisConfiguration) o);
+      manager.startAllConsumers((GlobalKinesisConfiguration) o);
     }
     super.onChange(o, file);
   }
