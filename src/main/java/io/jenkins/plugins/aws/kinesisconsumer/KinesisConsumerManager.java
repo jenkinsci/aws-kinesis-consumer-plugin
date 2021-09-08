@@ -18,11 +18,14 @@ import org.slf4j.LoggerFactory;
 @Singleton
 public class KinesisConsumerManager extends ItemListener {
   private static final Logger LOGGER = LoggerFactory.getLogger(KinesisConsumerManager.class);
+  private GlobalKinesisConfiguration configuration;
   private KinesisConsumer.Factory kinesisConsumerFactory;
   private Map<String, KinesisConsumer> consumers = new ConcurrentHashMap<>();
 
   @Inject
-  public KinesisConsumerManager(KinesisConsumer.Factory kinesisConsumerFactory) {
+  public KinesisConsumerManager(
+      GlobalKinesisConfiguration configuration, KinesisConsumer.Factory kinesisConsumerFactory) {
+    this.configuration = configuration;
     this.kinesisConsumerFactory = kinesisConsumerFactory;
   }
 
@@ -30,8 +33,7 @@ public class KinesisConsumerManager extends ItemListener {
 
   @Override
   public final void onLoaded() {
-    LOGGER.info("Start all consumers");
-    // TODO (JENKINS-66569): this should start consumers
+    startAllConsumers(configuration);
     super.onLoaded();
   }
 
