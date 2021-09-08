@@ -4,6 +4,8 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import hudson.Extension;
 import hudson.model.listeners.ItemListener;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,8 +19,7 @@ import org.slf4j.LoggerFactory;
 public class KinesisConsumerManager extends ItemListener {
   private static final Logger LOGGER = LoggerFactory.getLogger(KinesisConsumerManager.class);
   private KinesisConsumer.Factory kinesisConsumerFactory;
-  private KinesisConsumer
-      kinesisConsumer; // TODO: JENKINS-66496 - should actually connect to multiple streams
+  private Map<String, KinesisConsumer> consumers = new ConcurrentHashMap<>();
 
   @Inject
   public KinesisConsumerManager(KinesisConsumer.Factory kinesisConsumerFactory) {
@@ -36,10 +37,9 @@ public class KinesisConsumerManager extends ItemListener {
 
   @Override
   public final void onBeforeShutdown() {
-    if (kinesisConsumer != null) {
-      LOGGER.info("Shutting down all kinesis consumers");
-      kinesisConsumer.shutdown();
-    }
+    LOGGER.info("Shutting down all kinesis consumers");
+    consumers.values().forEach(KinesisConsumer::shutdown);
+    consumers.clear();
     super.onBeforeShutdown();
   }
 
@@ -52,8 +52,21 @@ public class KinesisConsumerManager extends ItemListener {
     return ItemListener.all().get(KinesisConsumerManager.class);
   }
 
-  public void start(GlobalKinesisConfiguration configuration) {
-    kinesisConsumer = kinesisConsumerFactory.create(configuration);
-    kinesisConsumer.start();
+  public void startAllConsumers(GlobalKinesisConfiguration configuration) {
+    if (configuration != null
+        && configuration.isKinesisConsumerEnabled()
+        && !configuration.getKinesisStreamItems().isEmpty()) {
+      LOGGER.info("Starting kinesis consumers for all configured streams");
+      configuration
+          .getKinesisStreamItems()
+          .forEach(
+              s ->
+                  consumers
+                      .computeIfAbsent(
+                          s.getStreamName(), stream -> kinesisConsumerFactory.create(stream))
+                      .subscribe());
+    } else {
+      LOGGER.info("NO kinesis consumers will be started as per configuration");
+    }
   }
 }

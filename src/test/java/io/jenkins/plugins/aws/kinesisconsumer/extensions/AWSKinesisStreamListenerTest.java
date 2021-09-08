@@ -88,8 +88,8 @@ public class AWSKinesisStreamListenerTest extends BaseLocalStack {
   @Test
   public void shouldConsumeAnEventPublishedToAStream() throws Exception {
     createStreamAndWait(STREAM_NAME);
-    KinesisConsumer kinesisConsumer = kinesisConsumerFactory.create(globalKinesisConfiguration);
-    kinesisConsumer.start();
+    KinesisConsumer kinesisConsumer = kinesisConsumerFactory.create(STREAM_NAME);
+    kinesisConsumer.subscribe();
 
     waitForLeaseTable();
 
