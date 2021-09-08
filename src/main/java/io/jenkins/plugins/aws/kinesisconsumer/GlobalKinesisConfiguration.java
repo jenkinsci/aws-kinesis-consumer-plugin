@@ -3,7 +3,9 @@ package io.jenkins.plugins.aws.kinesisconsumer;
 import hudson.Extension;
 import hudson.ExtensionList;
 import hudson.util.FormValidation;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import jenkins.model.GlobalConfiguration;
 import net.sf.json.JSONObject;
@@ -133,7 +135,7 @@ public class GlobalKinesisConfiguration extends GlobalConfiguration {
   }
 
   public List<KinesisStreamItem> getKinesisStreamItems() {
-    return kinesisStreamItems;
+    return Optional.ofNullable(kinesisStreamItems).orElse(Collections.emptyList());
   }
 
   /**
@@ -245,7 +247,12 @@ public class GlobalKinesisConfiguration extends GlobalConfiguration {
   }
 
   public KinesisStreamItem getKinesisStreamItemsForStream(String streamName) {
-    // TODO: need to implement for multiple KinesisStreamItem
-    return this.getKinesisStreamItems().get(0);
+    return getKinesisStreamItems().stream()
+        .filter(s -> streamName.equals(s.getStreamName()))
+        .findFirst()
+        .orElseThrow(
+            () ->
+                new IllegalArgumentException(
+                    String.format("Could not find stream %s", streamName)));
   }
 }
