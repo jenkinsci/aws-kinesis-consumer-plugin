@@ -40,6 +40,7 @@ public class KinesisConsumer {
 
   /** Stop the scheduler threads to end consuming records from the Kinesis streams */
   public void shutdown() {
+    // TODO: JENKINS-66590 Kinesis consumer fails shutting down workers
     logger.atInfo().log("Shutting down kinesis subscriber for stream %s", streamName);
     Future<Boolean> gracefulShutdownFuture = kinesisScheduler.startGracefulShutdown();
     try {
