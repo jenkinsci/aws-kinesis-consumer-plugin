@@ -24,11 +24,14 @@ public class KinesisConsumer {
   private Scheduler kinesisScheduler;
   private boolean isStarted = false;
   private final SchedulerProvider.Factory schedulerProviderFactory;
-    private final GlobalKinesisConfiguration configuration;
-    private final String streamName;
+  private final GlobalKinesisConfiguration configuration;
+  private final String streamName;
 
   @AssistedInject
-  KinesisConsumer(SchedulerProvider.Factory schedulerProviderFactory, @Assisted GlobalKinesisConfiguration configuration, @Assisted String streamName) {
+  KinesisConsumer(
+      SchedulerProvider.Factory schedulerProviderFactory,
+      @Assisted GlobalKinesisConfiguration configuration,
+      @Assisted String streamName) {
     this.schedulerProviderFactory = schedulerProviderFactory;
     this.configuration = configuration;
     this.streamName = streamName;
@@ -45,15 +48,16 @@ public class KinesisConsumer {
 
   /** Stop the scheduler threads to end consuming records from the Kinesis streams */
   public void shutdown() {
-    // TODO: JENKINS-66590 Kinesis consumer fails shutting down workers
     if (isStarted) {
-        logger.atInfo().log("Shutting down kinesis subscriber for stream %s", streamName);
-        Future<Boolean> gracefulShutdownFuture = kinesisScheduler.startGracefulShutdown();
+      logger.atInfo().log(
+          "Shutting down kinesis subscriber for stream '%s' (max waiting time: %s)",
+          streamName, configuration.getShutdownTimeoutMs());
+      Future<Boolean> gracefulShutdownFuture = kinesisScheduler.startGracefulShutdown();
       try {
-        gracefulShutdownFuture.get(10L, TimeUnit.MILLISECONDS);
+        gracefulShutdownFuture.get(configuration.getShutdownTimeoutMs(), TimeUnit.MILLISECONDS);
       } catch (Exception e) {
-          logger.atSevere().withCause(e).log(
-                  "Error shutting down kinesis subscriber for stream %s", streamName);
+        logger.atSevere().withCause(e).log(
+            "Error shutting down kinesis subscriber for stream %s", streamName);
       } finally {
         isStarted = false;
       }

@@ -66,7 +66,8 @@ public class KinesisConsumerManager extends ItemListener {
               s ->
                   consumers
                       .computeIfAbsent(
-                          s.getStreamName(), stream -> kinesisConsumerFactory.create(configuration, stream))
+                          s.getStreamName(),
+                          stream -> kinesisConsumerFactory.create(configuration, stream))
                       .subscribe());
     } else {
       LOGGER.info("NO kinesis consumers will be started as per configuration");
