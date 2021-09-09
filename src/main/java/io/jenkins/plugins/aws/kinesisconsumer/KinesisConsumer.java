@@ -15,18 +15,23 @@ import software.amazon.kinesis.coordinator.Scheduler;
  */
 public class KinesisConsumer {
   public interface Factory {
-    KinesisConsumer create(String streamName);
+    KinesisConsumer create(GlobalKinesisConfiguration configuration, String streamName);
   }
 
   private static final FluentLogger logger = FluentLogger.forEnclosingClass();
 
   private Scheduler kinesisScheduler;
   private final SchedulerProvider.Factory schedulerProviderFactory;
+  private final GlobalKinesisConfiguration configuration;
   private final String streamName;
 
   @AssistedInject
-  KinesisConsumer(SchedulerProvider.Factory schedulerProviderFactory, @Assisted String streamName) {
+  KinesisConsumer(
+      SchedulerProvider.Factory schedulerProviderFactory,
+      @Assisted GlobalKinesisConfiguration configuration,
+      @Assisted String streamName) {
     this.schedulerProviderFactory = schedulerProviderFactory;
+    this.configuration = configuration;
     this.streamName = streamName;
   }
 
@@ -40,11 +45,12 @@ public class KinesisConsumer {
 
   /** Stop the scheduler threads to end consuming records from the Kinesis streams */
   public void shutdown() {
-    // TODO: JENKINS-66590 Kinesis consumer fails shutting down workers
-    logger.atInfo().log("Shutting down kinesis subscriber for stream %s", streamName);
+    logger.atInfo().log(
+        "Shutting down kinesis subscriber for stream '%s' (max waiting time: %s)",
+        streamName, configuration.getShutdownTimeoutMs());
     Future<Boolean> gracefulShutdownFuture = kinesisScheduler.startGracefulShutdown();
     try {
-      gracefulShutdownFuture.get(10L, TimeUnit.MILLISECONDS);
+      gracefulShutdownFuture.get(configuration.getShutdownTimeoutMs(), TimeUnit.MILLISECONDS);
     } catch (Exception e) {
       logger.atSevere().withCause(e).log(
           "Error shutting down kinesis subscriber for stream %s", streamName);
