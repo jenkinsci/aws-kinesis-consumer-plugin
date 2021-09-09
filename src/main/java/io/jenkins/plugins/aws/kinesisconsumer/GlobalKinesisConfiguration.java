@@ -38,6 +38,9 @@ public class GlobalKinesisConfiguration extends GlobalConfiguration {
   private List<KinesisStreamItem> kinesisStreamItems;
   private String localEndpoint;
   private String applicationName;
+  private Integer shutdownTimeoutMs;
+
+  static final Integer DEFAULT_SHUTDOWN_TIMEOUT_MS = 20000;
 
   /**
    * Set AWS Region when loading the global configuration page
@@ -51,7 +54,17 @@ public class GlobalKinesisConfiguration extends GlobalConfiguration {
   }
 
   /**
-   * Set application name when loading the global configuration page. This name identifies the
+   * Set the maximum total time (milliseconds) waiting when shutting down kinesis consumers.
+   *
+   * @param timeoutMs timeout in milliseconds
+   */
+  @DataBoundSetter
+  public void setShutdownTimeoutMs(Integer timeoutMs) {
+    this.shutdownTimeoutMs = timeoutMs;
+  }
+
+  /**
+   * Set application name when loading the global configuration page This name identifies the
    * application, which must have a unique name that is scoped to the Amazon account and Region used
    * by the application. This name is used as a name for the control table in Amazon DynamoDB and
    * the namespace for Amazon CloudWatch metrics.
@@ -132,6 +145,15 @@ public class GlobalKinesisConfiguration extends GlobalConfiguration {
    */
   public String getApplicationName() {
     return applicationName;
+  }
+
+  /**
+   * Get the maximum total time (milliseconds) waiting when shutting down kinesis consumers.
+   *
+   * @return The timeout (milliseconds)
+   */
+  public Integer getShutdownTimeoutMs() {
+    return Optional.ofNullable(shutdownTimeoutMs).orElse(DEFAULT_SHUTDOWN_TIMEOUT_MS);
   }
 
   public List<KinesisStreamItem> getKinesisStreamItems() {

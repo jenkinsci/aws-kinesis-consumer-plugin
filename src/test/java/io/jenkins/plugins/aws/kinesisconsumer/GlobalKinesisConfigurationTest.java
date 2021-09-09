@@ -1,5 +1,6 @@
 package io.jenkins.plugins.aws.kinesisconsumer;
 
+import static io.jenkins.plugins.aws.kinesisconsumer.GlobalKinesisConfiguration.DEFAULT_SHUTDOWN_TIMEOUT_MS;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -22,6 +23,7 @@ public class GlobalKinesisConfigurationTest {
     c.setRegion("eu-east-1");
     c.setKinesisConsumerEnabled(true);
     c.setApplicationName("jenkins-test");
+    c.setShutdownTimeoutMs(5000);
     c.setKinesisStreamItems(ImmutableList.of(new KinesisStreamItem("stream_foo", "LATEST")));
     c.save();
     c.load();
@@ -92,5 +94,22 @@ public class GlobalKinesisConfigurationTest {
 
     assertEquals(result.kind, FormValidation.Kind.ERROR);
     assertTrue(result.getMessage().contains("Application name is required"));
+  }
+
+  @Test
+  public void shouldDefaultShutdownTimeoutMs() {
+    GlobalKinesisConfiguration c = GlobalKinesisConfiguration.get();
+
+    assertEquals(DEFAULT_SHUTDOWN_TIMEOUT_MS, c.getShutdownTimeoutMs());
+  }
+
+  @Test
+  public void shouldReadShutdownTimeoutMs() {
+    Integer timeoutMs = 1000;
+    GlobalKinesisConfiguration c = GlobalKinesisConfiguration.get();
+
+    c.setShutdownTimeoutMs(timeoutMs);
+
+    assertEquals(timeoutMs, c.getShutdownTimeoutMs());
   }
 }
