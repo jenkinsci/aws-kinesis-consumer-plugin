@@ -40,9 +40,7 @@ public class KinesisConsumerManager extends ItemListener {
 
   @Override
   public final void onBeforeShutdown() {
-    LOGGER.info("Shutting down all kinesis consumers");
-    consumers.values().forEach(KinesisConsumer::shutdown);
-    consumers.clear();
+    shutDownAllConsumers();
     super.onBeforeShutdown();
   }
 
@@ -77,5 +75,17 @@ public class KinesisConsumerManager extends ItemListener {
   @VisibleForTesting
   Map<String, KinesisConsumer> getKinesisConsumers() {
     return consumers;
+  }
+
+  public void shutDownAllConsumers() {
+    LOGGER.info("Shutting down all kinesis consumers");
+    consumers.values().forEach(KinesisConsumer::shutdown);
+    consumers.clear();
+  }
+
+  public void restartAllConsumers(GlobalKinesisConfiguration configuration) {
+    LOGGER.info("Restarting all kinesis consumers");
+    shutDownAllConsumers();
+    startAllConsumers(configuration);
   }
 }
