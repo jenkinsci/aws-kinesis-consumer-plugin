@@ -38,6 +38,9 @@ public class GlobalKinesisConfiguration extends GlobalConfiguration {
   private List<KinesisStreamItem> kinesisStreamItems;
   private String localEndpoint;
   private String applicationName;
+  private Integer shutdownTimeoutMs;
+
+  static final Integer DEFAULT_SHUTDOWN_TIMEOUT_MS = 20000;
 
   /**
    * Set AWS Region when loading the global configuration page
@@ -48,6 +51,16 @@ public class GlobalKinesisConfiguration extends GlobalConfiguration {
   @DataBoundSetter
   public void setRegion(String regionString) {
     this.region = regionString;
+  }
+
+  /**
+   * Set the maximum total time (milliseconds) waiting when shutting down kinesis consumers.
+   *
+   * @param timeoutMs timeout in milliseconds
+   */
+  @DataBoundSetter
+  public void setShutdownTimeoutMs(Integer timeoutMs) {
+    this.shutdownTimeoutMs = timeoutMs;
   }
 
   /**
@@ -132,6 +145,15 @@ public class GlobalKinesisConfiguration extends GlobalConfiguration {
    */
   public String getApplicationName() {
     return applicationName;
+  }
+
+  /**
+   * Get the maximum total time (milliseconds) waiting when shutting down kinesis consumers.
+   *
+   * @return The timeout (milliseconds)
+   */
+  public Integer getShutdownTimeoutMs() {
+    return Optional.ofNullable(shutdownTimeoutMs).orElse(DEFAULT_SHUTDOWN_TIMEOUT_MS);
   }
 
   public List<KinesisStreamItem> getKinesisStreamItems() {
