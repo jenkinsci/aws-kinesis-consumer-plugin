@@ -26,6 +26,9 @@
       <f:entry title="${%Local Endpoint}" field="localEndpoint">
         <f:textbox />
       </f:entry>
+      <f:entry title="${%Shutdown timeout (ms)}" field="shutdownTimeoutMs">
+        <f:textbox />
+      </f:entry>
     </f:advanced>
     <f:entry title="${%Streams}">
         <table width="100%">
