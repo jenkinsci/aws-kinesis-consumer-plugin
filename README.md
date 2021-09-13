@@ -36,9 +36,9 @@ Following is the Extension Point that will have to be implemented:
 Plugin Releases
 ---
 
-### v0.1.0 - Released - DD MM YYYY
+### v1.0.2 - Released - 13 September 2021
 
-Initial version of the plugin to connect to AWS Kinesis
+Initial version of the plugin to connect and consume records from AWS Kinesis
 
 Issues
 ---
