@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0985c31_4923defb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-09-13T20:24:58Z",
+      "side": 1,
+      "message": "just a couple of nit",
+      "revId": "6c568eb5441fb6ae8a5a2fd4bb897baf6f714adc",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46c14dd6_1d2de382",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/GlobalKinesisConfiguration.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-09-13T20:24:58Z",
+      "side": 1,
+      "message": "nit: Missing .",
+      "range": {
+        "startLine": 52,
+        "startChar": 68,
+        "endLine": 52,
+        "endChar": 69
+      },
+      "revId": "6c568eb5441fb6ae8a5a2fd4bb897baf6f714adc",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c85c729c_bad8083f",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/GlobalKinesisConfiguration.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-09-13T20:24:58Z",
+      "side": 1,
+      "message": "for consistency with the comment in the UI: \"This name is used as a name for the control table in Amazon DynamoDB and the namespace for Amazon CloudWatch metrics.\"",
+      "range": {
+        "startLine": 54,
+        "startChar": 25,
+        "endLine": 55,
+        "endChar": 49
+      },
+      "revId": "6c568eb5441fb6ae8a5a2fd4bb897baf6f714adc",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
