@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf83526a_2be28e65",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-09-13T21:32:12Z",
+      "side": 1,
+      "message": "Not sure about the relation between the isStarted variable and consumers/streams/threads.",
+      "revId": "95deed11f286230d0c429714ed6286cf00349032",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8f360b0_3bb805da",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/KinesisConsumer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-09-13T21:32:12Z",
+      "side": 1,
+      "message": "Now that we have multiple consumers, should we have one flag per consumer/thread?",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 13
+      },
+      "revId": "95deed11f286230d0c429714ed6286cf00349032",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
