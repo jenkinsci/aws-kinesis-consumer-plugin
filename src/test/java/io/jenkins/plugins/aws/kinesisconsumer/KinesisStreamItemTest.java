@@ -25,7 +25,10 @@ public class KinesisStreamItemTest extends BaseLocalStack {
             localstack.getRegion(),
             localstack.getEndpointOverride(KINESIS).toASCIIString(),
             "notExisting");
-    assertEquals(FormValidation.Kind.ERROR, result.kind);
+    assertEquals(
+        String.format("Form Validation error was: %s", result.renderHtml()),
+        FormValidation.Kind.ERROR,
+        result.kind);
   }
 
   @Test
@@ -37,6 +40,9 @@ public class KinesisStreamItemTest extends BaseLocalStack {
             localstack.getRegion(),
             localstack.getEndpointOverride(KINESIS).toASCIIString(),
             streamName);
-    assertEquals(FormValidation.Kind.OK, result.kind);
+    assertEquals(
+        String.format("Form Validation error was: %s", result.renderHtml()),
+        FormValidation.Kind.OK,
+        result.kind);
   }
 }
