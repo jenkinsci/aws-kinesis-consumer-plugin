@@ -49,6 +49,11 @@ public class BaseLocalStack {
             .httpClient(ApacheHttpClient.create())
             .region(Region.of(localstack.getRegion()))
             .build();
+
+    System.setProperty("endpoint", localstack.getEndpointOverride(KINESIS).toASCIIString());
+    System.setProperty("region", localstack.getRegion());
+    System.setProperty("aws.accessKeyId", localstack.getAccessKey());
+    System.setProperty("aws.secretAccessKey", localstack.getSecretKey());
   }
 
   @After

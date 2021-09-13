@@ -52,11 +52,6 @@ public class AWSKinesisStreamListenerTest extends BaseLocalStack {
     super.setUp();
     globalKinesisConfiguration = initGlobalConfig();
 
-    System.setProperty("endpoint", localstack.getEndpointOverride(KINESIS).toASCIIString());
-    System.setProperty("region", localstack.getRegion());
-    System.setProperty("aws.accessKeyId", localstack.getAccessKey());
-    System.setProperty("aws.secretAccessKey", localstack.getSecretKey());
-
     injector = Guice.createInjector(new TestKinesisConsumerModule());
     kinesisConsumerFactory = injector.getInstance(KinesisConsumer.Factory.class);
     dynamoDbAsynClient = injector.getInstance(DynamoDbAsyncClient.class);
