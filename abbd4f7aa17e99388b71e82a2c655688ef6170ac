@@ -1,0 +1,7 @@
+Code-Review+2: Fabio Ponciroli <ponch78@gmail.com>
+Verified+1: Antonio Barone <syntonyze@gmail.com>
+Submitted-by: Antonio Barone <syntonyze@gmail.com>
+Submitted-at: Mon, 13 Sep 2021 20:40:49 +0000
+Reviewed-on: https://review.gerrithub.io/c/jenkinsci/aws-kinesis-consumer-plugin/+/523530
+Project: jenkinsci/aws-kinesis-consumer-plugin
+Branch: refs/heads/master
