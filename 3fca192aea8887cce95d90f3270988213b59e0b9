@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afeacdb2_ed070fbc",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/KinesisConsumerManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-09-13T21:13:00Z",
+      "side": 1,
+      "message": "I have created a ticket to consolidate the log libraries: JENKINS-66627",
+      "range": {
+        "startLine": 19,
+        "startChar": 39,
+        "endLine": 19,
+        "endChar": 52
+      },
+      "revId": "3fca192aea8887cce95d90f3270988213b59e0b9",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
