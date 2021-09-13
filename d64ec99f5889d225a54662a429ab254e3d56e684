@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b5ccee2_145f871e",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/KinesisConsumer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-09-13T21:38:54Z",
+      "side": 1,
+      "message": "this is just formatting, right ?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 36
+      },
+      "revId": "d64ec99f5889d225a54662a429ab254e3d56e684",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42d0687d_7bf97f0b",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/KinesisConsumerManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-09-13T21:38:54Z",
+      "side": 1,
+      "message": "shall we leave the formatting out of this change ?",
+      "range": {
+        "startLine": 69,
+        "startChar": 1,
+        "endLine": 70,
+        "endChar": 4
+      },
+      "revId": "d64ec99f5889d225a54662a429ab254e3d56e684",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cf69d08_fb14af72",
+        "filename": "src/main/resources/io/jenkins/plugins/aws/kinesisconsumer/GlobalKinesisConfiguration/help-shutdownTimeoutMs.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-09-13T21:38:54Z",
+      "side": 1,
+      "message": "\"T\" for consistency with the other tooltips",
+      "range": {
+        "startLine": 2,
+        "startChar": 7,
+        "endLine": 2,
+        "endChar": 8
+      },
+      "revId": "d64ec99f5889d225a54662a429ab254e3d56e684",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d76a34ec_006a6cc9",
+        "filename": "src/main/resources/io/jenkins/plugins/aws/kinesisconsumer/GlobalKinesisConfiguration/help-shutdownTimeoutMs.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-09-13T21:38:54Z",
+      "side": 1,
+      "message": "nit: Kinesis",
+      "range": {
+        "startLine": 2,
+        "startChar": 72,
+        "endLine": 2,
+        "endChar": 79
+      },
+      "revId": "d64ec99f5889d225a54662a429ab254e3d56e684",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
