@@ -24,6 +24,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbe65e2f_cb4d630b",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/KinesisConsumer.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2021-09-14T13:54:53Z",
+      "side": 1,
+      "message": "Yep sorry I must have forgot to run google-java-format in some early change.\nWe should enable the format on compile as you suggested.",
+      "parentUuid": "0b5ccee2_145f871e",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 36
+      },
+      "revId": "d64ec99f5889d225a54662a429ab254e3d56e684",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42d0687d_7bf97f0b",
