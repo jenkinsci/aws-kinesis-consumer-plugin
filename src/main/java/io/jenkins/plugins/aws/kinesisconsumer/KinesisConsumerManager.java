@@ -1,14 +1,13 @@
 package io.jenkins.plugins.aws.kinesisconsumer;
 
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.flogger.FluentLogger;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import hudson.Extension;
 import hudson.model.listeners.ItemListener;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Manager of stream connections
@@ -18,7 +17,7 @@ import org.slf4j.LoggerFactory;
 @Extension
 @Singleton
 public class KinesisConsumerManager extends ItemListener {
-  private static final Logger LOGGER = LoggerFactory.getLogger(KinesisConsumerManager.class);
+  private static final FluentLogger logger = FluentLogger.forEnclosingClass();
   private GlobalKinesisConfiguration configuration;
   private KinesisConsumer.Factory kinesisConsumerFactory;
   private final Map<String, KinesisConsumer> consumers = new ConcurrentHashMap<>();
@@ -57,7 +56,7 @@ public class KinesisConsumerManager extends ItemListener {
     if (configuration != null
         && configuration.isKinesisConsumerEnabled()
         && !configuration.getKinesisStreamItems().isEmpty()) {
-      LOGGER.info("Starting kinesis consumers for all configured streams");
+      logger.atInfo().log("Starting kinesis consumers for all configured streams");
       configuration
           .getKinesisStreamItems()
           .forEach(
@@ -68,7 +67,7 @@ public class KinesisConsumerManager extends ItemListener {
                           stream -> kinesisConsumerFactory.create(configuration, stream))
                       .subscribe());
     } else {
-      LOGGER.info("NO kinesis consumers will be started as per configuration");
+      logger.atInfo().log("NO kinesis consumers will be started as per configuration");
     }
   }
 
@@ -78,13 +77,13 @@ public class KinesisConsumerManager extends ItemListener {
   }
 
   public void shutDownAllConsumers() {
-    LOGGER.info("Shutting down all kinesis consumers");
+    logger.atInfo().log("Shutting down all kinesis consumers");
     consumers.values().forEach(KinesisConsumer::shutdown);
     consumers.clear();
   }
 
   public void restartAllConsumers(GlobalKinesisConfiguration configuration) {
-    LOGGER.info("Restarting all kinesis consumers");
+    logger.atInfo().log("Restarting all kinesis consumers");
     shutDownAllConsumers();
     startAllConsumers(configuration);
   }

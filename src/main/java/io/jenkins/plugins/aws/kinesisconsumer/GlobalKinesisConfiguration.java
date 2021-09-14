@@ -1,5 +1,6 @@
 package io.jenkins.plugins.aws.kinesisconsumer;
 
+import com.google.common.flogger.FluentLogger;
 import hudson.Extension;
 import hudson.ExtensionList;
 import hudson.util.FormValidation;
@@ -15,8 +16,6 @@ import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundSetter;
 import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.kinesis.common.InitialPositionInStream;
 
@@ -29,7 +28,7 @@ import software.amazon.kinesis.common.InitialPositionInStream;
 @Symbol("aws-kinesis-consumer")
 public class GlobalKinesisConfiguration extends GlobalConfiguration {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(GlobalKinesisConfiguration.class);
+  private static final FluentLogger logger = FluentLogger.forEnclosingClass();
 
   private static final UrlValidator URL_VALIDATOR = new UrlValidator(UrlValidator.ALLOW_LOCAL_URLS);
 
@@ -185,7 +184,7 @@ public class GlobalKinesisConfiguration extends GlobalConfiguration {
       return FormValidation.ok();
     } else {
       String errorMessage = String.format("'%s' is not a valid URL", value);
-      LOGGER.error(errorMessage);
+      logger.atSevere().log(errorMessage);
       return FormValidation.error(errorMessage);
     }
   }
@@ -210,7 +209,7 @@ public class GlobalKinesisConfiguration extends GlobalConfiguration {
               "'%s' is not a valid AWS region. Valid regions are: %s",
               region,
               Region.regions().stream().map(Region::toString).collect(Collectors.joining(",")));
-      LOGGER.error(errorMessage);
+      logger.atSevere().log(errorMessage);
       return FormValidation.error(errorMessage);
     }
   }
@@ -249,7 +248,7 @@ public class GlobalKinesisConfiguration extends GlobalConfiguration {
         String.format(
             "'%s' is not a valid initial position. Valid positions:" + " TRIM_HORIZON, LATEST",
             value);
-    LOGGER.error(errorMessage);
+    logger.atSevere().log(errorMessage);
     return FormValidation.error(errorMessage);
   }
 
