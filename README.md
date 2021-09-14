@@ -1,6 +1,10 @@
 AWS Kinesis Consumer Plugin for Jenkins
 =======================================================
 
+[![Jenkins Plugin](https://img.shields.io/jenkins/plugin/v/aws-kinesis-consumer.svg)](https://plugins.jenkins.io/aws-kinesis-consumer)
+[![Jenkins Plugin Installs](https://img.shields.io/jenkins/plugin/i/aws-kinesis-consumer.svg)](https://plugins.jenkins.io/aws-kinesis-consumer)
+[![Build Status](https://ci.jenkins.io/buildStatus/icon?job=Plugins/aws-kinesis-consumer-plugin/master)](https://ci.jenkins.io/job/Plugins/job/aws-kinesis-consumer-plugin/job/master/)
+
 aws-kinesis-consumer is a Jenkins plugin to connect to [Kinesis](https://aws.amazon.com/kinesis/) and consume
 records coming from specific streams.
 
