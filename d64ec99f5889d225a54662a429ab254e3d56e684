@@ -71,6 +71,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ae2b540_1c29f795",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/KinesisConsumerManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2021-09-14T13:55:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "42d0687d_7bf97f0b",
+      "range": {
+        "startLine": 69,
+        "startChar": 1,
+        "endLine": 70,
+        "endChar": 4
+      },
+      "revId": "d64ec99f5889d225a54662a429ab254e3d56e684",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2cf69d08_fb14af72",
@@ -107,6 +131,54 @@
       "writtenOn": "2021-09-13T21:38:54Z",
       "side": 1,
       "message": "nit: Kinesis",
+      "range": {
+        "startLine": 2,
+        "startChar": 72,
+        "endLine": 2,
+        "endChar": 79
+      },
+      "revId": "d64ec99f5889d225a54662a429ab254e3d56e684",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02bf2320_320ada11",
+        "filename": "src/main/resources/io/jenkins/plugins/aws/kinesisconsumer/GlobalKinesisConfiguration/help-shutdownTimeoutMs.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2021-09-14T13:55:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cf69d08_fb14af72",
+      "range": {
+        "startLine": 2,
+        "startChar": 7,
+        "endLine": 2,
+        "endChar": 8
+      },
+      "revId": "d64ec99f5889d225a54662a429ab254e3d56e684",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d5c94ad_16ec3a34",
+        "filename": "src/main/resources/io/jenkins/plugins/aws/kinesisconsumer/GlobalKinesisConfiguration/help-shutdownTimeoutMs.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2021-09-14T13:55:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d76a34ec_006a6cc9",
       "range": {
         "startLine": 2,
         "startChar": 72,
