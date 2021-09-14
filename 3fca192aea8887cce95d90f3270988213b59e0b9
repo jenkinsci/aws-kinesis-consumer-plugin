@@ -22,6 +22,30 @@
       },
       "revId": "3fca192aea8887cce95d90f3270988213b59e0b9",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05c5c4b7_a351fb1e",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/KinesisConsumerManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-09-14T07:09:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "afeacdb2_ed070fbc",
+      "range": {
+        "startLine": 19,
+        "startChar": 39,
+        "endLine": 19,
+        "endChar": 52
+      },
+      "revId": "3fca192aea8887cce95d90f3270988213b59e0b9",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
