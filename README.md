@@ -44,5 +44,17 @@ Plugin Releases
 
 Initial version of the plugin to connect and consume records from AWS Kinesis
 
+### v1.0.3 - Released - 14 September 2021
+
+* `0e6bc81` Make consistent use of logger library
+* `58ca196` Handle kinesis record processor phases
+* `be03616` Restart consumers upon configuration change
+* `67062a2` Introduce shutdownTimeoutMs configuration
+* `ebc1f0c` Automatically start consumers when jenkins is ready
+* `95deed1` Connect to multiple kinesis streams
+* `c0867be` Consolidate AWS async client builder
+* `088f0d6` Handle KinesisConsumer shutdown
+* `abbd4f7` Make applicationName configurable
+
 Issues
 ---
