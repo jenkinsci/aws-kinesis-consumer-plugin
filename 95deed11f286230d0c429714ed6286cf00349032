@@ -39,6 +39,30 @@
       },
       "revId": "95deed11f286230d0c429714ed6286cf00349032",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a60abeb_4422c5ed",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/KinesisConsumer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2021-09-14T13:45:21Z",
+      "side": 1,
+      "message": "There is now a 1-2-1 mapping between KinesisConsumer and a given stream\nThe launching of all KinesisConsumers is done by the KinesisStreamManager which subscribes N consumers.\n\nIn this context isStarted only refers to one particular consumer and it is a property of one particular instance.",
+      "parentUuid": "f8f360b0_3bb805da",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 13
+      },
+      "revId": "95deed11f286230d0c429714ed6286cf00349032",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
