@@ -1,0 +1,7 @@
+Verified+1: Jenkins at Gerrit-CI <jenkins@gerritforge.com>
+Code-Review+2: Antonio Barone <syntonyze@gmail.com>
+Submitted-by: Antonio Barone <syntonyze@gmail.com>
+Submitted-at: Wed, 15 Sep 2021 13:53:21 +0000
+Reviewed-on: https://review.gerrithub.io/c/jenkinsci/aws-kinesis-consumer-plugin/+/524004
+Project: jenkinsci/aws-kinesis-consumer-plugin
+Branch: refs/heads/master
