@@ -51,7 +51,7 @@
         <commons.validator.version>1.6</commons.validator.version>
         <commons.digester.version>2.1</commons.digester.version>
         <com.google.flogger.version>0.6</com.google.flogger.version>
-        <google.guava.version>26.0-jre</google.guava.version>
+        <google.guava.version>30.0-jre</google.guava.version>
         <com.fasterxml.jackson.version>2.12.3</com.fasterxml.jackson.version>
         <apache.common.version>3.12.0</apache.common.version>
         <apache.commons.compress.version>1.21</apache.commons.compress.version>
