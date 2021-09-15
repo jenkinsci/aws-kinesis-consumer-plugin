@@ -12,29 +12,20 @@ import org.acegisecurity.context.SecurityContextHolder;
  * stream. The external application has to:
  *
  * <ul>
- *   <li>Specify which stream to listen to overriding {@link
- *       AWSKinesisStreamListener#getStreamName()}
  *   <li>Implement the logic upon record receive by overriding {@link
- *       AWSKinesisStreamListener#onReceive(byte[])}
+ *       AWSKinesisStreamListener#onReceive(String, byte[])}
  * </ul>
  *
  * @author Fabio Ponciroli
  */
 public abstract class AWSKinesisStreamListener implements ExtensionPoint {
-
-  /**
-   * This needs to be overridden to specify which Kinesis record to listen
-   *
-   * @return Kinesis stream name to listen
-   */
-  public abstract String getStreamName();
-
   /**
    * This needs to be overridden to implement the logic upon record receive
    *
+   * @param streamName source AWS Kinesis stream name
    * @param byteRecord input byte record to process
    */
-  public abstract void onReceive(byte[] byteRecord);
+  public abstract void onReceive(String streamName, byte[] byteRecord);
 
   public static void fireOnReceive(String streamName, byte[] byteRecord) {
 
@@ -42,12 +33,10 @@ public abstract class AWSKinesisStreamListener implements ExtensionPoint {
     SecurityContext old = ACL.impersonate(ACL.SYSTEM);
     try {
       for (AWSKinesisStreamListener listener : getAllRegisteredListeners()) {
-        if (streamName.equals(listener.getStreamName())) {
-          try {
-            listener.onReceive(byteRecord);
-          } catch (Exception ex) {
+        try {
+          listener.onReceive(streamName, byteRecord);
+        } catch (Exception ex) {
 
-          }
         }
       }
     } finally {

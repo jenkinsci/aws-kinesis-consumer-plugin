@@ -6,6 +6,8 @@ import hudson.Extension;
 import hudson.ExtensionList;
 import io.jenkins.plugins.aws.kinesisconsumer.BaseLocalStack;
 import io.jenkins.plugins.aws.kinesisconsumer.utils.WaitUtil;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.Test;
 import software.amazon.awssdk.core.SdkBytes;
 import software.amazon.awssdk.services.kinesis.model.PutRecordRequest;
@@ -14,24 +16,19 @@ public class AWSKinesisStreamListenerTest extends BaseLocalStack {
 
   @Extension
   public static class TestListener extends AWSKinesisStreamListener {
-    private int recordReceivedCounter;
+    private Map<String, Integer> recordReceivedPerStream;
 
     public TestListener() {
-      recordReceivedCounter = 0;
+      recordReceivedPerStream = new HashMap<>();
     }
 
-    int getRecordReceivedCounter() {
-      return recordReceivedCounter;
-    }
-
-    @Override
-    public String getStreamName() {
-      return STREAM_NAME;
+    Integer getRecordReceivedCounter(String streamName) {
+      return recordReceivedPerStream.getOrDefault(streamName, 0);
     }
 
     @Override
-    public void onReceive(byte[] byteRecord) {
-      recordReceivedCounter++;
+    public void onReceive(String streamName, byte[] byteRecord) {
+      recordReceivedPerStream.put(streamName, getRecordReceivedCounter(streamName) + 1);
     }
   }
 
@@ -50,7 +47,8 @@ public class AWSKinesisStreamListenerTest extends BaseLocalStack {
 
     sendKinesisRecord();
 
-    WaitUtil.waitUntil(() -> testListener.getRecordReceivedCounter() == 1, RECORD_CONSUMED_TIMEOUT);
+    WaitUtil.waitUntil(
+        () -> testListener.getRecordReceivedCounter(STREAM_NAME) == 1, RECORD_CONSUMED_TIMEOUT);
   }
 
   private void sendKinesisRecord() {
