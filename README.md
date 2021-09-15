@@ -56,5 +56,11 @@ Initial version of the plugin to connect and consume records from AWS Kinesis
 * `088f0d6` Handle KinesisConsumer shutdown
 * `abbd4f7` Make applicationName configurable
 
+### v1.0.4 - Released - 15 September 2021
+
+* `0fab7b6` Move stream filtering to client
+* `6b3c9d1` Upgrade com.google.guava:guava
+* `b29949b` Upgrade org.apache.commons:commons-compress
+
 Issues
 ---
