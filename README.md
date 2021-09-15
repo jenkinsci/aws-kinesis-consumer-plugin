@@ -24,7 +24,7 @@ your pom.xml:
 
   <dependencies>
     <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
+      <groupId>io.jenkins.plugins</groupId>
       <artifactId>aws-kinesis-consumer</artifactId>
       <version>VERSION</version>
     </dependency>
