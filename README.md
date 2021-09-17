@@ -37,6 +37,33 @@ Following is the Extension Point that will have to be implemented:
 
 > io.jenkins.plugins.aws.kinesisconsumer.extensions.AWSKinesisStreamListener
 
+Prepare a release
+---
+
+1. Update the `README` with the release notes. Use the following oneliner to
+capture the changes since the last release:
+
+```bash
+> git log --pretty=oneline --abbrev-commit --no-merges
+aws-kinesis-consumer-<latest_versions>..HEAD
+```
+
+2. Commit the `README` with the following message: `"Prepare v<new_version>
+release notes"`. For example:
+
+```bash
+> git show  --pretty=format:"%s" -s  94398d33c4ca7f2010b01c8f6173a8c3cf79e0bf
+Prepare v1.0.4 release notes
+```
+3. Perform the release (_NOTE: only the plugin maintainers have permissions to
+publish the artifacts_):
+
+```bash
+> mvn release:clean release:prepare release:perform
+```
+
+The artifact will be available in the [Jenkins Maven repository](https://repo.jenkins-ci.org/artifactory/releases/io/jenkins/plugins/aws-kinesis-consumer/)
+
 Plugin Releases
 ---
 
