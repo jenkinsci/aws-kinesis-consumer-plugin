@@ -67,9 +67,15 @@ The artifact will be available in the [Jenkins Maven repository](https://repo.je
 Plugin Releases
 ---
 
-### v1.0.2 - Released - 13 September 2021
+### v1.0.5 - Released - 17 September 2021
 
-Initial version of the plugin to connect and consume records from AWS Kinesis
+* `87f58c6` Bump up Jenkins version to 2.312
+
+### v1.0.4 - Released - 15 September 2021
+
+* `0fab7b6` Move stream filtering to client
+* `6b3c9d1` Upgrade com.google.guava:guava
+* `b29949b` Upgrade org.apache.commons:commons-compress
 
 ### v1.0.3 - Released - 14 September 2021
 
@@ -83,11 +89,9 @@ Initial version of the plugin to connect and consume records from AWS Kinesis
 * `088f0d6` Handle KinesisConsumer shutdown
 * `abbd4f7` Make applicationName configurable
 
-### v1.0.4 - Released - 15 September 2021
+### v1.0.2 - Released - 13 September 2021
 
-* `0fab7b6` Move stream filtering to client
-* `6b3c9d1` Upgrade com.google.guava:guava
-* `b29949b` Upgrade org.apache.commons:commons-compress
+Initial version of the plugin to connect and consume records from AWS Kinesis
 
 Issues
 ---
