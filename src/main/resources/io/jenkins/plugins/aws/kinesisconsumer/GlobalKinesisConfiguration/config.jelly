@@ -40,6 +40,14 @@
                      field="initialPositionInStream">
               <f:textbox />
             </f:entry>
+            <f:entry title="${%Trigger SCM Build}"
+                     field="triggerSCMBuild">
+              <f:checkbox />
+            </f:entry>
+            <f:entry title="${%Project Name JSON Path query}"
+                     field="projectNameJsonPath">
+              <f:textbox />
+            </f:entry>
             <f:entry title="">
               <f:repeatableDeleteButton />
               <f:validateButton
