@@ -55,8 +55,9 @@ public class KinesisRecordProcessor implements ShardRecordProcessor {
           .records()
           .forEach(
               consumerRecord -> {
-                AWSKinesisStreamListener.fireOnReceive(
-                    streamName, new byte[consumerRecord.data().remaining()]);
+                byte[] byteRecord = new byte[consumerRecord.data().remaining()];
+                consumerRecord.data().get(byteRecord);
+                AWSKinesisStreamListener.fireOnReceive(streamName, new String(byteRecord));
               });
     } catch (Throwable t) {
       logger.atSevere().withCause(t).log(
