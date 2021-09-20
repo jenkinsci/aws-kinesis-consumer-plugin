@@ -18,13 +18,16 @@ public class GlobalKinesisConfigurationTest {
 
   @Test
   public void configRoundtrip() {
+    Boolean triggerSCMBuild = false;
     GlobalKinesisConfiguration c = GlobalKinesisConfiguration.get();
     c.setLocalEndpoint("http://localhost:4566");
     c.setRegion("eu-east-1");
     c.setKinesisConsumerEnabled(true);
     c.setApplicationName("jenkins-test");
     c.setShutdownTimeoutMs(5000);
-    c.setKinesisStreamItems(ImmutableList.of(new KinesisStreamItem("stream_foo", "LATEST")));
+    c.setKinesisStreamItems(
+        ImmutableList.of(
+            new KinesisStreamItem("stream_foo", "LATEST", "$.project", triggerSCMBuild)));
     c.save();
     c.load();
   }
