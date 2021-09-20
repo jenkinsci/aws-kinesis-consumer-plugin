@@ -24,7 +24,8 @@ public class GlobalKinesisConfigurationTest {
     c.setKinesisConsumerEnabled(true);
     c.setApplicationName("jenkins-test");
     c.setShutdownTimeoutMs(5000);
-    c.setKinesisStreamItems(ImmutableList.of(new KinesisStreamItem("stream_foo", "LATEST")));
+    c.setKinesisStreamItems(ImmutableList.of(new KinesisStreamItem(
+    "stream_foo", "LATEST", "project", false)));
     c.save();
     c.load();
   }

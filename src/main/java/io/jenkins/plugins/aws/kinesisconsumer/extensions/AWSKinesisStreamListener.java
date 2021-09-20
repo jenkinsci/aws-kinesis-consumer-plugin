@@ -44,6 +44,8 @@ public abstract class AWSKinesisStreamListener implements ExtensionPoint {
     }
   }
 
+
+
   /**
    * Gets all listeners.
    *

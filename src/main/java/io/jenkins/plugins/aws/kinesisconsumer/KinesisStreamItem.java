@@ -33,6 +33,8 @@ import software.amazon.awssdk.services.kinesis.model.StreamStatus;
 public class KinesisStreamItem implements Describable<KinesisStreamItem> {
   private String streamName = null;
   private String initialPositionInStream = null;
+  private String projectNameField = null;
+  private Boolean triggerSCMBuild = null;
 
   /**
    * Creates KinesisStreamItem instance.
@@ -40,9 +42,12 @@ public class KinesisStreamItem implements Describable<KinesisStreamItem> {
    * @param streamName the queue name.
    */
   @DataBoundConstructor
-  public KinesisStreamItem(String streamName, String initialPositionInStream) {
+  public KinesisStreamItem(String streamName, String initialPositionInStream,
+   String projectNameField, Boolean triggerSCMBuild) {
     this.streamName = StringUtils.stripToNull(streamName);
     this.initialPositionInStream = StringUtils.stripToNull(initialPositionInStream);
+    this.projectNameField = StringUtils.stripToNull(projectNameField);
+    this.triggerSCMBuild = triggerSCMBuild;
   }
 
   /**
@@ -83,6 +88,22 @@ public class KinesisStreamItem implements Describable<KinesisStreamItem> {
    */
   public void setInitialPositionInStream(String initialPositionInStream) {
     this.initialPositionInStream = initialPositionInStream;
+  }
+
+  public String getProjectNameField() {
+    return projectNameField;
+  }
+
+  public void setProjectNameField(String projectNameField) {
+    this.projectNameField = projectNameField;
+  }
+
+  public Boolean getTriggerSCMBuild() {
+    return triggerSCMBuild;
+  }
+
+  public void setTriggerSCMBuild(Boolean triggerSCMBuild) {
+    this.triggerSCMBuild = triggerSCMBuild;
   }
 
   @Extension
