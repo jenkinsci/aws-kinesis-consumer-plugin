@@ -67,6 +67,10 @@ The artifact will be available in the [Jenkins Maven repository](https://repo.je
 Plugin Releases
 ---
 
+### v1.0.6 - Released - 20 September 2021
+
+* `a28f012` Set Jenkins version to latest LTS 2.303.1
+
 ### v1.0.5 - Released - 17 September 2021
 
 * `87f58c6` Bump up Jenkins version to 2.312
