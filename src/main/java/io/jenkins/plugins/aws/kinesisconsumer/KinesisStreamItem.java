@@ -33,6 +33,8 @@ import software.amazon.awssdk.services.kinesis.model.StreamStatus;
 public class KinesisStreamItem implements Describable<KinesisStreamItem> {
   private String streamName = null;
   private String initialPositionInStream = null;
+  private String projectNameJsonPath = null;
+  private Boolean triggerSCMBuild = null;
 
   /**
    * Creates KinesisStreamItem instance.
@@ -40,9 +42,15 @@ public class KinesisStreamItem implements Describable<KinesisStreamItem> {
    * @param streamName the queue name.
    */
   @DataBoundConstructor
-  public KinesisStreamItem(String streamName, String initialPositionInStream) {
+  public KinesisStreamItem(
+      String streamName,
+      String initialPositionInStream,
+      String projectNameJsonPath,
+      Boolean triggerSCMBuild) {
     this.streamName = StringUtils.stripToNull(streamName);
     this.initialPositionInStream = StringUtils.stripToNull(initialPositionInStream);
+    this.projectNameJsonPath = StringUtils.stripToNull(projectNameJsonPath);
+    this.triggerSCMBuild = triggerSCMBuild;
   }
 
   /**
@@ -83,6 +91,22 @@ public class KinesisStreamItem implements Describable<KinesisStreamItem> {
    */
   public void setInitialPositionInStream(String initialPositionInStream) {
     this.initialPositionInStream = initialPositionInStream;
+  }
+
+  public String getProjectNameJsonPath() {
+    return projectNameJsonPath;
+  }
+
+  public void setProjectNameJsonPath(String projectNameJsonPath) {
+    this.projectNameJsonPath = projectNameJsonPath;
+  }
+
+  public Boolean getTriggerSCMBuild() {
+    return triggerSCMBuild;
+  }
+
+  public void setTriggerSCMBuild(Boolean triggerSCMBuild) {
+    this.triggerSCMBuild = triggerSCMBuild;
   }
 
   @Extension
