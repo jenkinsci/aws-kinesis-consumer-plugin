@@ -27,7 +27,7 @@ public class AWSKinesisStreamListenerTest extends BaseLocalStack {
     }
 
     @Override
-    public void onReceive(String streamName, byte[] byteRecord) {
+    public void onReceive(String streamName, String jsonPayload) {
       recordReceivedPerStream.put(streamName, getRecordReceivedCounter(streamName) + 1);
     }
   }
@@ -41,7 +41,8 @@ public class AWSKinesisStreamListenerTest extends BaseLocalStack {
 
     ExtensionList<AWSKinesisStreamListener> extensionList =
         AWSKinesisStreamListener.getAllRegisteredListeners();
-    assertEquals(1, extensionList.size());
+    // The 2 listeners are: AWSKinesisStreamListenerImpl + TestListener
+    assertEquals(2, extensionList.size());
 
     TestListener testListener = (TestListener) extensionList.get(0);
 
