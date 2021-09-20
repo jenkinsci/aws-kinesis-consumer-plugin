@@ -4,6 +4,7 @@ import com.google.common.flogger.FluentLogger;
 import com.google.inject.assistedinject.Assisted;
 import com.google.inject.assistedinject.AssistedInject;
 import io.jenkins.plugins.aws.kinesisconsumer.extensions.AWSKinesisStreamListener;
+import java.nio.charset.StandardCharsets;
 import software.amazon.kinesis.exceptions.InvalidStateException;
 import software.amazon.kinesis.exceptions.ShutdownException;
 import software.amazon.kinesis.lifecycle.events.InitializationInput;
@@ -55,8 +56,10 @@ public class KinesisRecordProcessor implements ShardRecordProcessor {
           .records()
           .forEach(
               consumerRecord -> {
+                byte[] byteRecord = new byte[consumerRecord.data().remaining()];
+                consumerRecord.data().get(byteRecord);
                 AWSKinesisStreamListener.fireOnReceive(
-                    streamName, new byte[consumerRecord.data().remaining()]);
+                    streamName, new String(byteRecord, StandardCharsets.UTF_8));
               });
     } catch (Throwable t) {
       logger.atSevere().withCause(t).log(
