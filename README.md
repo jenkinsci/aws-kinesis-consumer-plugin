@@ -10,6 +10,48 @@ records coming from specific streams.
 
 This plugin has global configuration only, so any features for user are not provided.
 
+Configuration
+---
+
+The plugin adds a "AWS Kinesis Consumer" section in the Global Configuration
+page:
+
+![Configuration page](images/full-configuration-example.png "Title")
+
+These are the configurable parameters:
+
+**Main section**
+
+* `Enable consumer`: when enabled the consumer will try to connect to all
+the configured streams
+* `Region`: AWS Region hosting the Kinesis stream. This parameter is
+optional. If set it will override any Region set in the Region Provider Chain.
+* `ApplicationName`: prefix added to the consumer name to make sure consumer
+names are unique as requested by Kinesis
+
+`Advanced Options` are available to use AWS Kinesis instances running on
+[Localstack](https://github.com/localstack/localstack):
+
+![Advanced Options](images/advanced-options-example.png "Title")
+
+* `Local Endpoint`: HTTP endpoint for the local AWS Kinesis stack
+* `Shutdown timeout`: maximum total time (milliseconds) waiting when
+shutting down Kinesis consumers. Default is 20 seconds.
+
+**Streams section**
+
+Multiple AWS Kinesis streams can be configured to listen from
+* `Stream name`: name of the Stream to consume events from
+* `Initial position in stream`: position to start consuming from
+(accepted values: *TRIM_HORIZON* or *LATEST*). This is only used before any
+checkpoint is taken. Once a checkpoint, this value will be ignored.
+* `Trigger SCM Build`: If set, a build of SCM sources will be triggered upon
+receiving a message. If the event received contains the configured project
+name in the specified *JSON Path Query* (see next parameter), a build will be
+triggered for SCM sources pointing to the project.
+* `Project Name JSON Path query`: [JSON Path](https://support.smartbear.com/alertsite/docs/monitors/api/endpoint/jsonpath.html)
+query to extract the project name from the event
+
 Implement listener plugin
 ------------------------
 
