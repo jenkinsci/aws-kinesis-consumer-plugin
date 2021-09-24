@@ -24,6 +24,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ee5bf8c_e9347d50",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-09-24T09:06:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee019910_a76c9b93",
+      "range": {
+        "startLine": 7,
+        "startChar": 24,
+        "endLine": 7,
+        "endChar": 48
+      },
+      "revId": "707edf4912010d741c47e0f07c3daa7faeb70bd5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "881f20de_b52a0fe2",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-09-24T07:52:16Z",
       "side": 1,
       "message": "consider adding a check to test ProjectName is always defined (or provide a default)",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 3
+      },
+      "revId": "707edf4912010d741c47e0f07c3daa7faeb70bd5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ec5a42b_0d4f8a09",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/KinesisStreamItem.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-09-24T09:06:32Z",
+      "side": 1,
+      "message": "Not necessarely. It should only be defined if the checkbox triggerSCMBuild it ticked. I was checking how hard would be to add a JS to enable/disable the textbox accordingly the chckbox status.",
+      "parentUuid": "881f20de_b52a0fe2",
       "range": {
         "startLine": 100,
         "startChar": 0,
@@ -110,6 +158,72 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75385b4d_1d1e9bf4",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/extensions/AWSKinesisStreamListener.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-09-24T09:06:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2569fec4_f590c8fc",
+      "revId": "707edf4912010d741c47e0f07c3daa7faeb70bd5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68be74ae_66274578",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/extensions/AWSKinesisStreamListener.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-09-24T09:06:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1765762a_78a948bb",
+      "range": {
+        "startLine": 42,
+        "startChar": 29,
+        "endLine": 42,
+        "endChar": 38
+      },
+      "revId": "707edf4912010d741c47e0f07c3daa7faeb70bd5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ab966e1_d74c9f46",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/extensions/AWSKinesisStreamListener.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-09-24T09:06:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "603e7b28_30700aed",
+      "range": {
+        "startLine": 42,
+        "startChar": 43,
+        "endLine": 42,
+        "endChar": 49
+      },
+      "revId": "707edf4912010d741c47e0f07c3daa7faeb70bd5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "856b9410_45343911",
@@ -123,6 +237,30 @@
       "writtenOn": "2021-09-24T07:52:16Z",
       "side": 1,
       "message": "Don\u0027t already project and streamName uniquely identify this sourceEvent?\nThe SOURCE_NAME is always the same (scm-trigger-aws-kinesis-consumer), perhaps there\u0027s no much value in interpolating it as well.\n\nWhat about type? should that be included in the interpolation?",
+      "range": {
+        "startLine": 25,
+        "startChar": 25,
+        "endLine": 25,
+        "endChar": 36
+      },
+      "revId": "707edf4912010d741c47e0f07c3daa7faeb70bd5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41e0c33c_78e38982",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/listeners/AWSKinesisSCMSourceEvent.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-09-24T09:06:32Z",
+      "side": 1,
+      "message": "I have checked the docs of the base class:\n\ntype – the type of event.\npayload – the original provider specific payload.\norigin – the (optional) origin of the event, e.g. a hostname, etc\n\nHence I have amended the origin as follow: \"aws-kinesis\" + \u0027|\u0027 + streamName\n\nWDYT?",
+      "parentUuid": "856b9410_45343911",
       "range": {
         "startLine": 25,
         "startChar": 25,
@@ -156,6 +294,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a061a7a_9c256c95",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/listeners/AWSKinesisStreamListenerImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-09-24T09:06:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa3a4976_9c13e4c0",
+      "range": {
+        "startLine": 57,
+        "startChar": 51,
+        "endLine": 57,
+        "endChar": 54
+      },
+      "revId": "707edf4912010d741c47e0f07c3daa7faeb70bd5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80b666d8_fe45d4aa",
@@ -169,6 +331,30 @@
       "writtenOn": "2021-09-24T07:52:16Z",
       "side": 1,
       "message": "nit: name this variable?",
+      "range": {
+        "startLine": 28,
+        "startChar": 82,
+        "endLine": 28,
+        "endChar": 87
+      },
+      "revId": "707edf4912010d741c47e0f07c3daa7faeb70bd5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12cdb2fb_89bebdb4",
+        "filename": "src/test/java/io/jenkins/plugins/aws/kinesisconsumer/GlobalKinesisConfigurationTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-09-24T09:06:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80b666d8_fe45d4aa",
       "range": {
         "startLine": 28,
         "startChar": 82,
