@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee019910_a76c9b93",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2021-09-24T07:52:16Z",
+      "side": 1,
+      "message": "when an event is consumed?",
+      "range": {
+        "startLine": 7,
+        "startChar": 24,
+        "endLine": 7,
+        "endChar": 48
+      },
+      "revId": "707edf4912010d741c47e0f07c3daa7faeb70bd5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "881f20de_b52a0fe2",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/KinesisStreamItem.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2021-09-24T07:52:16Z",
+      "side": 1,
+      "message": "consider adding a check to test ProjectName is always defined (or provide a default)",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 3
+      },
+      "revId": "707edf4912010d741c47e0f07c3daa7faeb70bd5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "603e7b28_30700aed",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/extensions/AWSKinesisStreamListener.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2021-09-24T07:52:16Z",
+      "side": 1,
+      "message": "remove concatenation",
+      "range": {
+        "startLine": 42,
+        "startChar": 43,
+        "endLine": 42,
+        "endChar": 49
+      },
+      "revId": "707edf4912010d741c47e0f07c3daa7faeb70bd5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2569fec4_f590c8fc",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/extensions/AWSKinesisStreamListener.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2021-09-24T07:52:16Z",
+      "side": 1,
+      "message": "nit: consider adding \u0027stream\u0027 to the logging for ease of debugging",
+      "revId": "707edf4912010d741c47e0f07c3daa7faeb70bd5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1765762a_78a948bb",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/extensions/AWSKinesisStreamListener.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2021-09-24T07:52:16Z",
+      "side": 1,
+      "message": "onReceive()",
+      "range": {
+        "startLine": 42,
+        "startChar": 29,
+        "endLine": 42,
+        "endChar": 38
+      },
+      "revId": "707edf4912010d741c47e0f07c3daa7faeb70bd5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "856b9410_45343911",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/listeners/AWSKinesisSCMSourceEvent.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2021-09-24T07:52:16Z",
+      "side": 1,
+      "message": "Don\u0027t already project and streamName uniquely identify this sourceEvent?\nThe SOURCE_NAME is always the same (scm-trigger-aws-kinesis-consumer), perhaps there\u0027s no much value in interpolating it as well.\n\nWhat about type? should that be included in the interpolation?",
+      "range": {
+        "startLine": 25,
+        "startChar": 25,
+        "endLine": 25,
+        "endChar": 36
+      },
+      "revId": "707edf4912010d741c47e0f07c3daa7faeb70bd5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa3a4976_9c13e4c0",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/listeners/AWSKinesisStreamListenerImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2021-09-24T07:52:16Z",
+      "side": 1,
+      "message": "Why is this payload always an empty string?\nIt is annotated as @NotNull in the constructor.",
+      "range": {
+        "startLine": 57,
+        "startChar": 51,
+        "endLine": 57,
+        "endChar": 54
+      },
+      "revId": "707edf4912010d741c47e0f07c3daa7faeb70bd5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80b666d8_fe45d4aa",
+        "filename": "src/test/java/io/jenkins/plugins/aws/kinesisconsumer/GlobalKinesisConfigurationTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2021-09-24T07:52:16Z",
+      "side": 1,
+      "message": "nit: name this variable?",
+      "range": {
+        "startLine": 28,
+        "startChar": 82,
+        "endLine": 28,
+        "endChar": 87
+      },
+      "revId": "707edf4912010d741c47e0f07c3daa7faeb70bd5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
