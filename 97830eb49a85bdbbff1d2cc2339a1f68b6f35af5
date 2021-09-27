@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "515672cb_475c7434",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2021-09-27T07:55:58Z",
+      "side": 1,
+      "message": "We should probably note that this is only used before any checkpoint is taken.\nIf a checkpoint was already taken, this value will effectively be ignored.",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 45
+      },
+      "revId": "97830eb49a85bdbbff1d2cc2339a1f68b6f35af5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f22a00c0_71c9a971",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2021-09-27T07:55:58Z",
+      "side": 1,
+      "message": "Any project event would trigger right? not just updates.\nEven project creations for example.\n\nI would perhaps rephrasing as\n\n\"if the event received contains the configured project name...\"\n\nor something like that",
+      "range": {
+        "startLine": 48,
+        "startChar": 52,
+        "endLine": 48,
+        "endChar": 68
+      },
+      "revId": "97830eb49a85bdbbff1d2cc2339a1f68b6f35af5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
