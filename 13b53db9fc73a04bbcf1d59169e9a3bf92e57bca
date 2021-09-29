@@ -22,6 +22,30 @@
       },
       "revId": "13b53db9fc73a04bbcf1d59169e9a3bf92e57bca",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af1af37b_dee18a70",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/listeners/AWSKinesisStreamListenerImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1012541
+      },
+      "writtenOn": "2021-09-29T15:00:29Z",
+      "side": 1,
+      "message": "Good point! Done",
+      "parentUuid": "03a56292_df8c727e",
+      "range": {
+        "startLine": 89,
+        "startChar": 15,
+        "endLine": 89,
+        "endChar": 86
+      },
+      "revId": "13b53db9fc73a04bbcf1d59169e9a3bf92e57bca",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
