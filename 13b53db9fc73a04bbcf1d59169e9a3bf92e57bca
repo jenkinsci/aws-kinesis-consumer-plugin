@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03a56292_df8c727e",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/listeners/AWSKinesisStreamListenerImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2021-09-29T14:57:40Z",
+      "side": 1,
+      "message": "as I understand it, it will be *very* common to receive payloads that do not have the defined jsonPath.\n\nIn the case of gerrit stream for example, anything that is not a ref-updated-* for example.\n\nWe should consider logging this at a finer level, so that we don\u0027t spam the logs when constantly receiving such messages",
+      "range": {
+        "startLine": 89,
+        "startChar": 15,
+        "endLine": 89,
+        "endChar": 86
+      },
+      "revId": "13b53db9fc73a04bbcf1d59169e9a3bf92e57bca",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

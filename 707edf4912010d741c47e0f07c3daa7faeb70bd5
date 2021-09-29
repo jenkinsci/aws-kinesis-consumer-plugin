@@ -95,6 +95,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8eee6c9_bd0b7d97",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/KinesisStreamItem.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2021-09-29T14:57:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3ec5a42b_0d4f8a09",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 3
+      },
+      "revId": "707edf4912010d741c47e0f07c3daa7faeb70bd5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "603e7b28_30700aed",
