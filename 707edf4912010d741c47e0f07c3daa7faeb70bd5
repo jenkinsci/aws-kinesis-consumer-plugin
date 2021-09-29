@@ -295,6 +295,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04a93688_c6591a4e",
+        "filename": "src/main/java/io/jenkins/plugins/aws/kinesisconsumer/listeners/AWSKinesisSCMSourceEvent.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1015244
+      },
+      "writtenOn": "2021-09-29T15:02:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "41e0c33c_78e38982",
+      "range": {
+        "startLine": 25,
+        "startChar": 25,
+        "endLine": 25,
+        "endChar": 36
+      },
+      "revId": "707edf4912010d741c47e0f07c3daa7faeb70bd5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa3a4976_9c13e4c0",
