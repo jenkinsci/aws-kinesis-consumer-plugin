@@ -4,28 +4,9 @@
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
-        <version>4.16</version>
+        <version>4.31</version>
         <relativePath />
     </parent>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.jenkins-ci.tools</groupId>
-                <artifactId>maven-hpi-plugin</artifactId>
-                <configuration>
-                    <minimumJavaVersion />
-                    <!-- JENKINS-50520: since we need a custom version of Guava -->
-                    <maskClasses>com.google.common.</maskClasses>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <reuseForks>false</reuseForks>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
     <groupId>io.jenkins.plugins</groupId>
     <artifactId>aws-kinesis-consumer</artifactId>
     <version>${revision}${changelist}</version>
@@ -33,16 +14,15 @@
     <properties>
         <revision>1.0.6</revision>
         <changelist>-SNAPSHOT</changelist>
-        <jenkins.version>2.277.1</jenkins.version>
+        <jenkins.version>2.321</jenkins.version>
         <java.level>8</java.level>
         <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>
 
         <workflow.version>1.14.2</workflow.version>
         <scm-api-plugin.version>2.6.4</scm-api-plugin.version>
-        <git.version>3.5.1</git.version>
         <json-path.version>2.6.0</json-path.version>
-        <errorprone_annotation.version>2.4.0</errorprone_annotation.version>
-        <checker-qual.version>3.8.0</checker-qual.version>
+        <errorprone_annotation.version>2.7.1</errorprone_annotation.version>
+        <checker-qual.version>3.12.0</checker-qual.version>
         <jmockit.version>1.44</jmockit.version>
         <kinesis.client.version>2.3.4</kinesis.client.version>
         <kinesis.version>2.15.32</kinesis.version>
@@ -56,11 +36,10 @@
         <commons.validator.version>1.6</commons.validator.version>
         <commons.digester.version>2.1</commons.digester.version>
         <com.google.flogger.version>0.6</com.google.flogger.version>
-        <google.guava.version>30.0-jre</google.guava.version>
         <com.fasterxml.jackson.version>2.12.3</com.fasterxml.jackson.version>
         <apache.common.version>3.12.0</apache.common.version>
         <apache.commons.compress.version>1.21</apache.commons.compress.version>
-        <google.inject.extensions.version>4.0</google.inject.extensions.version>
+        <google.inject.extensions.version>5.0.1</google.inject.extensions.version>
         <testcontainer.localstack.version>1.16.0</testcontainer.localstack.version>
         <mockito.version>3.12.4</mockito.version>
 
@@ -72,8 +51,8 @@
         <dependencies>
             <dependency>
                 <groupId>io.jenkins.tools.bom</groupId>
-                <artifactId>bom-2.277.x</artifactId>
-                <version>26</version>
+                <artifactId>bom-2.319.x</artifactId>
+                <version>1013.vf8058992a042</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -227,11 +206,6 @@
             <version>${google.inject.extensions.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${google.guava.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${apache.common.version}</version>
@@ -291,12 +265,10 @@
         <dependency>
             <groupId>org.jenkins-ci.plugins</groupId>
             <artifactId>git</artifactId>
-            <version>${git.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jenkins-ci.plugins</groupId>
             <artifactId>git</artifactId>
-            <version>${git.version}</version>
             <classifier>tests</classifier>
             <scope>test</scope>
         </dependency>
