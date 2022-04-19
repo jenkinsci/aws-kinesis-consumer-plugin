@@ -1,4 +1,4 @@
 <?jelly escape-by-default='true'?>
 <div>
   This plugin connects Jenkins to [Kinesis](https://aws.amazon.com/kinesis/) and consumes records coming from specific streams.
-</div?
+</div>
